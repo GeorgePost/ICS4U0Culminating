@@ -1,26 +1,30 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-public class Tutorial implements ActionListener{
+public class Tutorial{
         Drawing draw = new Drawing();
         int mouseX = 0, mouseY = 0;
-        JPanel panel = new JPanel();
+        JPanel panel;
         Color lightBlue = new Color(0, 234, 255);
         Color lightGrey=new Color(238, 238, 238);
-        JFrame frame;
+       
         int clickCount=0;
         JLabel label2=new JLabel("(Click To Continue)");
+        JFrame frame = new JFrame("Mouse Lines");
         public Tutorial(){
-            JFrame frame = new JFrame("Mouse Lines");
+            panel = new JPanel();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             draw.addMouseListener(new ClickHandler());
-            frame.add(panel);
+            frame.add(draw);
             frame.setSize(800,500);
-            panel.setLayout(new GridBagLayout());
-            panel.setBackground(Color.BLACK);
             title();
             campignManager();
             textBox();
+            panel.setLayout(null);
+            panel.setBackground(Color.BLACK);
+            frame.add(panel); // Add panel to the center
+            frame.add(draw);  // Add draw to the FRAME_CONTENT_LAYER
+            
             frame.setVisible(true);
         }
         public void title(){
@@ -49,24 +53,18 @@ public class Tutorial implements ActionListener{
         }
         class ClickHandler extends MouseAdapter{
             public void mouseClicked(MouseEvent e) {
-                clickCount++;
-                if(clickCount==1){
-                     label2.setText("Welcome to Wallaby and Co’s AI political door to door campaign program. This program will teach AIs like yourself how to navigate door to door conversations with a call to action being a product or a vote. [Click to Continue]");
+                System.out.println("Hello");
+                System.out.flush();
+                             
                }
-               panel.add(label2);
-               draw.repaint();
-            }
-            }
+         }
 
-        class Drawing extends JComponent{
+         class Drawing extends JComponent{
             public void paint(Graphics g){
-                  
+                  frame.add(panel); 
                 }
             }
-
-        public void actionPerformed(ActionEvent e) {
-        }
-            public static void main(String[] args){
+         public static void main(String[] args){
             new Tutorial();
-        }
+         }
     }
