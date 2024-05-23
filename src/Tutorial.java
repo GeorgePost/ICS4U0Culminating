@@ -21,10 +21,7 @@ public class Tutorial{
             campignManager();
             textBox();
             panel.setLayout(null);
-            panel.setBackground(Color.BLACK);
-            frame.add(panel); // Add panel to the center
-            frame.add(draw);  // Add draw to the FRAME_CONTENT_LAYER
-            
+            panel.setBackground(Color.BLACK); 
             frame.setVisible(true);
         }
         public void title(){
@@ -61,10 +58,11 @@ public class Tutorial{
 
          class Drawing extends JComponent{
             public void paint(Graphics g){
-                  frame.add(panel); 
+                   frame.add(panel); 
                 }
             }
          public static void main(String[] args){
             new Tutorial();
+            
          }
     }
