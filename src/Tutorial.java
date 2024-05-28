@@ -53,19 +53,19 @@ public class Tutorial{
       line1 =new JLabel("[Click To Continue]");
       line1.setFont(new Font("Serif", Font.PLAIN, 24));
       line1.setForeground(Color.BLACK);
-      line1.setBounds(155,300,590,30);
+      line1.setBounds(155,310,590,30);
       line1.setOpaque(true);
       lp.add(line1,JLayeredPane.PALETTE_LAYER);
       line2 = new JLabel("");
       line2.setFont(new Font("Serif", Font.PLAIN, 24));
       line2.setForeground(Color.BLACK);
-      line2.setBounds(155,330,590,30);
+      line2.setBounds(155,340,590,30);
       line2.setOpaque(true);
       lp.add(line2,JLayeredPane.PALETTE_LAYER);
       line3 = new JLabel("");
       line3.setFont(new Font("Serif", Font.PLAIN, 24));
       line3.setForeground(Color.BLACK);
-      line3.setBounds(155,360,590,30);
+      line3.setBounds(155,370,590,30);
       line3.setOpaque(true);
       lp.add(line3,JLayeredPane.PALETTE_LAYER);
       /*
@@ -158,8 +158,8 @@ public class Tutorial{
          }
          if(clickCount==3){
             line1.setText("This program will focus on selling a political party the ");
-            line2.setText("wallaby party. The image above shows the parties core values.");
-            line3.setText("[Click to Continue]");
+            line2.setText("wallaby party. The image above shows the parties core");
+            line3.setText("values. [Click to Continue]");
             /*slide.setVisible(false);
             image.setVisible(true);
             policy1.setVisible(true);
@@ -177,13 +177,40 @@ public class Tutorial{
    }
    }
    class Drawing extends JComponent{
+      public void slider(int x,int y, int width, int value, Graphics g){
+         g.setColor(darkYellow);
+         g.fillRoundRect(x,y,width,10,10,10);
+         g.setColor(yellow);
+         int movement=(int)((value/100.0)*width);
+         g.fillOval(x+movement-7,y-2,15,15);
+      }public void face(int x,int y, int width, int state, Graphics g){
+         Graphics2D h = (Graphics2D) g;
+         g.setColor(yellow);
+         g.fillOval(x,y,width,width);
+         g.setColor(Color.BLACK);
+         g.fillOval(x+(width/5),y+(width/10)*3,width/5,width/5);
+         g.fillOval(x+(width/5)*3,y+(width/10)*3,width/5,width/5);
+         h.setStroke(new BasicStroke(4));
+         if(state==2){
+            h.drawArc(x+(width/5),y+(width/5)*3,width/5*3,width/5,200,140);
+         }else if(state==0){
+            h.drawArc(x+(width/5),y+(width/10)*7,width/5*3,width/5,20,140);
+         }else{
+            g.fillRect(x+(width/5),y+(width/10)*7,width/5*3,5);
+         }
+      }
       public void paint(Graphics g){
          g.setColor(backgroundColor); 
          g.fillRect(0,0,800,500);
          g.setColor(lightGrey);
          g.fillRoundRect(150,300,600,150,20,20);
-         g.setColor(darkYellow);
-         g.fillRoundRect(20,20,100,300,20,20);
+         slider(50,115,200,25,g);
+         face(100,15,100,0,g);
+         slider(300,115,200,50,g);
+         face(350,15,100,1,g);
+         slider(550,115,200,75,g);
+         face(600,15,100,2,g);
+         
       }
    }
 }
