@@ -26,8 +26,8 @@ public class Tutorial{
       title();
       campignManager();
       textBox();
-      /*slideImage();
-      slide2();*/
+      slideImage();
+      slide2();
       panel.add(lp);
       frame.add(lp);
       lp.setOpaque(true);
@@ -53,27 +53,21 @@ public class Tutorial{
       line1 =new JLabel("[Click To Continue]");
       line1.setFont(new Font("Serif", Font.PLAIN, 24));
       line1.setForeground(Color.BLACK);
-      line1.setBounds(155,310,590,30);
+      line1.setBounds(160,310,590,30);
       line1.setOpaque(true);
       lp.add(line1,JLayeredPane.PALETTE_LAYER);
       line2 = new JLabel("");
       line2.setFont(new Font("Serif", Font.PLAIN, 24));
       line2.setForeground(Color.BLACK);
-      line2.setBounds(155,340,590,30);
+      line2.setBounds(160,340,590,30);
       line2.setOpaque(true);
       lp.add(line2,JLayeredPane.PALETTE_LAYER);
       line3 = new JLabel("");
       line3.setFont(new Font("Serif", Font.PLAIN, 24));
       line3.setForeground(Color.BLACK);
-      line3.setBounds(155,370,590,30);
+      line3.setBounds(160,370,590,30);
       line3.setOpaque(true);
       lp.add(line3,JLayeredPane.PALETTE_LAYER);
-      /*
-      box.setForeground(Color.BLACK);
-      box.setBackground(lightGrey);
-      box.setBounds(150,300,600,150);
-      box.setOpaque(true);
-      lp.add(box,JLayeredPane.PALETTE_LAYER);*/
   }
   public void slideImage(){
       slide=new JLabel("");
@@ -145,6 +139,7 @@ public class Tutorial{
   }
   class ClickHandler extends MouseAdapter{
       public void mouseClicked(MouseEvent e) {
+      lp.repaint();
       System.out.println(e.getX()+","+e.getY());
           clickCount++;
           if(clickCount==1){
@@ -160,18 +155,37 @@ public class Tutorial{
             line1.setText("This program will focus on selling a political party the ");
             line2.setText("wallaby party. The image above shows the parties core");
             line3.setText("values. [Click to Continue]");
-            /*slide.setVisible(false);
+            slide.setVisible(false);
             image.setVisible(true);
             policy1.setVisible(true);
             policy2.setVisible(true);
             policy3.setVisible(true);
             policy4.setVisible(true);
             policy5.setVisible(true);
-            policy6.setVisible(true);*/
+            policy6.setVisible(true);
          }
          if(clickCount==4){
             line1.setText("Make sure these are the only platforms you talk about ");
             line2.setText("during conversation. [Click to Continue]");
+            line3.setText("");
+         }if(clickCount==5){
+            image.setVisible(false);
+            policy1.setVisible(false);
+            policy2.setVisible(false);
+            policy3.setVisible(false);
+            policy4.setVisible(false);
+            policy5.setVisible(false);
+            policy6.setVisible(false);
+            line1.setText("Here is your approval meter. If you say something a");
+            line2.setText("person doesn’t like, the approval meter will decrease.");
+            line3.setText("[Click to Continue]");
+         }if(clickCount==6){
+            line1.setText("The approval meter will increase if you say something a");
+            line2.setText("person likes. If the approval Meter falls all the way to");
+            line3.setText("the left side, you have failed the level.[Click to Continue]");
+         }if(clickCount==7){
+            line1.setText("If the approval meter reaches the right side, you have");
+            line2.setText("successfully completed the level. [Click to Continue]");
             line3.setText("");
          }
    }
@@ -200,17 +214,27 @@ public class Tutorial{
          }
       }
       public void paint(Graphics g){
+         Graphics2D h = (Graphics2D) g;
          g.setColor(backgroundColor); 
          g.fillRect(0,0,800,500);
          g.setColor(lightGrey);
          g.fillRoundRect(150,300,600,150,20,20);
-         slider(50,115,200,25,g);
-         face(100,15,100,0,g);
-         slider(300,115,200,50,g);
-         face(350,15,100,1,g);
-         slider(550,115,200,75,g);
-         face(600,15,100,2,g);
-         
+         if(clickCount>4 && clickCount<=7){
+            slider(50,115,200,25,g);
+            face(100,10,100,0,g);
+            slider(300,115,200,50,g);
+            face(350,10,100,1,g);
+            slider(550,115,200,75,g);
+            face(600,10,100,2,g);
+            h.setColor(orange);
+            Font font = new Font("SansSerif", Font.PLAIN,50);
+            h.setFont(font);
+            h.drawString("You Lose",150,200);
+            slider(160,220,200,0,g);
+            h.setColor(orange);
+            h.drawString("You Win",500,200);
+            slider(500,220,200,100,g);
+         }
       }
    }
 }
