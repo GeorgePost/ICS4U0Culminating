@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.*;
 public class Conversation{
     Door drawDoor;
     Option1 drawOp1;
@@ -34,8 +35,24 @@ public class Conversation{
         myPanel.add(drawRes);
         Game.frame.validate();
         Game.frame.repaint();
+        System.out.println(textFormat("How are you doing today. I am doing great. What is your favourite color?",10));
     }
-
+    public ArrayList<String> textFormat(String message, int numChars)
+    {
+        ArrayList<String> lines = new ArrayList<String>();
+        lines.add("");
+        while(message.indexOf(" ")>=0)
+        {
+            int wordLen = message.indexOf(" ");
+            if(lines.get(lines.size()-1).length()+wordLen >= numChars)
+                lines.add(" ");
+            if(lines.get(lines.size()-1).length()+wordLen <= numChars) {
+                lines.set(lines.size() - 1, lines.get(lines.size() - 1) + message.substring(0, message.indexOf(" ")) + " ");
+                message = message.substring(message.indexOf(" ")+1);
+            }
+        }
+        return lines;
+    }
     class ClickHandler extends MouseAdapter{
         public void mouseClicked(MouseEvent e) {
             System.out.println(e.getX()+","+e.getY());
