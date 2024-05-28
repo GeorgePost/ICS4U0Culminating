@@ -9,21 +9,29 @@ public class Tutorial{
    Color lightGrey=new Color(238, 238, 238);
    Color backgroundColor=new Color(32,32,32);
    Color orange=new Color(255, 171, 64);
+   Color darkYellow=new Color(128,128,0);
+   Color yellow = new Color(238,255,65);
    int clickCount=0;
    JLabel box = new JLabel("");
    JLabel line1,line2,line3,slide,image,policy1,policy2,policy3,policy4,policy5,policy6;
    JFrame frame= Game.frame;
+   JLayeredPane lp;
    public Tutorial(){
+      lp = new JLayeredPane();
       panel = Game.panel;
       panel.addMouseListener(new ClickHandler());
-      panel.add(draw);
+      lp.add(draw,JLayeredPane.DEFAULT_LAYER);
+      draw.setBounds(0,0,800,500);
+      draw.setOpaque(true);
       title();
       campignManager();
       textBox();
-      slideImage();
-      slide2();
-      panel.setBackground(backgroundColor);
-      frame.add(panel);
+      /*slideImage();
+      slide2();*/
+      panel.add(lp);
+      frame.add(lp);
+      lp.setOpaque(true);
+      lp.setVisible(true);
   }
   public void title(){
       JLabel label1 = new JLabel("Tutorial");
@@ -31,7 +39,7 @@ public class Tutorial{
       label1.setForeground(lightBlue);
       label1.setBackground(Color.BLACK);
       label1.setBounds(340, 10, 300, 50);
-      panel.add(label1);
+      lp.add(label1,1);
   }
   public void campignManager(){
       JLabel label=new JLabel("");
@@ -39,7 +47,7 @@ public class Tutorial{
       label.setIcon(new ImageIcon(img));
       label.setBounds(0,180,400,400);
       panel.setLayout(null);
-      panel.add(label);
+      lp.add(label,JLayeredPane.PALETTE_LAYER);
   }
   public void textBox(){
       line1 =new JLabel("[Click To Continue]");
@@ -47,24 +55,25 @@ public class Tutorial{
       line1.setForeground(Color.BLACK);
       line1.setBounds(155,300,590,30);
       line1.setOpaque(true);
-      panel.add(line1);
+      lp.add(line1,JLayeredPane.PALETTE_LAYER);
       line2 = new JLabel("");
       line2.setFont(new Font("Serif", Font.PLAIN, 24));
       line2.setForeground(Color.BLACK);
       line2.setBounds(155,330,590,30);
       line2.setOpaque(true);
-      panel.add(line2);
+      lp.add(line2,JLayeredPane.PALETTE_LAYER);
       line3 = new JLabel("");
       line3.setFont(new Font("Serif", Font.PLAIN, 24));
       line3.setForeground(Color.BLACK);
       line3.setBounds(155,360,590,30);
       line3.setOpaque(true);
-      panel.add(line3);
+      lp.add(line3,JLayeredPane.PALETTE_LAYER);
+      /*
       box.setForeground(Color.BLACK);
       box.setBackground(lightGrey);
       box.setBounds(150,300,600,150);
       box.setOpaque(true);
-      panel.add(box);
+      lp.add(box,JLayeredPane.PALETTE_LAYER);*/
   }
   public void slideImage(){
       slide=new JLabel("");
@@ -72,7 +81,7 @@ public class Tutorial{
       Image newImage=img.getScaledInstance(384,384,Image.SCALE_SMOOTH);
       slide.setIcon(new ImageIcon(newImage));
       slide.setBounds(200,44,500,280);
-      panel.add(slide);
+      lp.add(slide,JLayeredPane.PALETTE_LAYER);
   }
   public void slide2(){
    image= new JLabel("");
@@ -126,13 +135,13 @@ public class Tutorial{
    policy5.setVisible(false);
    policy6.setVisible(false);
    //adding to panel
-   panel.add(image);
-   panel.add(policy1);
-   panel.add(policy2);
-   panel.add(policy3);
-   panel.add(policy4);
-   panel.add(policy5);
-   panel.add(policy6);
+   lp.add(image,JLayeredPane.PALETTE_LAYER);
+   lp.add(policy1,JLayeredPane.PALETTE_LAYER);
+   lp.add(policy2,JLayeredPane.PALETTE_LAYER);
+   lp.add(policy3,JLayeredPane.PALETTE_LAYER);
+   lp.add(policy4,JLayeredPane.PALETTE_LAYER);
+   lp.add(policy5,JLayeredPane.PALETTE_LAYER);
+   lp.add(policy6,JLayeredPane.PALETTE_LAYER);
   }
   class ClickHandler extends MouseAdapter{
       public void mouseClicked(MouseEvent e) {
@@ -151,14 +160,14 @@ public class Tutorial{
             line1.setText("This program will focus on selling a political party the ");
             line2.setText("wallaby party. The image above shows the parties core values.");
             line3.setText("[Click to Continue]");
-            slide.setVisible(false);
+            /*slide.setVisible(false);
             image.setVisible(true);
             policy1.setVisible(true);
             policy2.setVisible(true);
             policy3.setVisible(true);
             policy4.setVisible(true);
             policy5.setVisible(true);
-            policy6.setVisible(true);
+            policy6.setVisible(true);*/
          }
          if(clickCount==4){
             line1.setText("Make sure these are the only platforms you talk about ");
@@ -169,7 +178,12 @@ public class Tutorial{
    }
    class Drawing extends JComponent{
       public void paint(Graphics g){
-             frame.add(panel); 
-          }
+         g.setColor(backgroundColor); 
+         g.fillRect(0,0,800,500);
+         g.setColor(lightGrey);
+         g.fillRoundRect(150,300,600,150,20,20);
+         g.setColor(darkYellow);
+         g.fillRoundRect(20,20,100,300,20,20);
+      }
    }
 }
