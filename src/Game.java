@@ -8,6 +8,7 @@ public class Game
     public static void main (String[] args)
     {
         frameSetup();
+        new Conversation();
         newScene(1);
         frame.repaint();
     }
@@ -20,8 +21,10 @@ public class Game
         panel = new JPanel();
         panel.setOpaque(true);
         panel.setVisible(true);
+        panel.setLayout(null);
         frame.setLayout(new BorderLayout());
         frame.getContentPane().add(panel);
+        
     }
     public static void changeScene(int sc)
     {
@@ -35,7 +38,7 @@ public class Game
 
     public static void newScene(int sc)
     {
-        switch (sc){
+        /*switch (sc){
             case 1:
                 new TitleScreen();
                 break;
@@ -45,7 +48,7 @@ public class Game
             case 3:
                 new Tutorial();
                 break;
-        }
+        }*/
     }
 
 }
