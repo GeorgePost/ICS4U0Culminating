@@ -1,22 +1,47 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+/*
+ * Tutorial Class that teaches the user about the game.
+ * There is 4 sections for this tutorial teach the user about the game.
+ * <strong>Course info:</strong>
+ * ICS4U0 with V. Krasteva
+ * @author:George Postica
+ * @version: 0.2.8
+ * Created on May 21,2024
+*/
 public class Tutorial{
-   Drawing draw = new Drawing();
-   int mouseX = 0, mouseY = 0;
-   JPanel panel;
-   Color lightBlue = new Color(0, 234, 255);
-   Color lightGrey=new Color(238, 238, 238);
-   Color backgroundColor=new Color(32,32,32);
-   Color orange=new Color(255, 171, 64);
-   Color darkYellow=new Color(128,128,0);
-   Color yellow = new Color(238,255,65);
-   int clickCount=0;
-   JLabel box = new JLabel("");
-   JLabel line1,line2,line3,slide,image,policy1,policy2,policy3,policy4,policy5,policy6;
+   /**Created draw to display my drawings */
+   private Drawing draw = new Drawing();
+   /**Varible to hold Game's panel*/
+   private JPanel panel;
+   /**Light blue color*/
+   private Color lightBlue = new Color(0, 234, 255);
+   /**Light grey Color*/
+   private Color lightGrey=new Color(238, 238, 238);
+   /**Background color used in the draw to make the background*/
+   private Color backgroundColor=new Color(32,32,32);
+   /**ornage used for You win and you lose and the background of the party values*/
+   private Color orange=new Color(255, 171, 64);
+   /**darkyellow color used for rounded rect of the slider*/
+   private Color darkYellow=new Color(128,128,0);
+   /**yellow color used for the circle in the slider*/
+   private Color yellow = new Color(238,255,65);
+   /**Keeps track of the user's amount of clicks in the scene*/
+   private int clickCount;
+   /**Setting all the Labels for the slides*/
+   private JLabel line1,line2,line3,slide,image,policy1,policy2,policy3,policy4,policy5,policy6;
+   /**Setting the frame from Game*/
    JFrame frame= Game.frame;
+   /**Layered pane, so that Labels and paint work together*/
    JLayeredPane lp;
+   /**
+     *Constructor for Tutorial 
+     *Creates the labels, adds the labels and draw to a layered pane.
+     *Defines the game panel, and add layerPaned to the frame and panel
+   */
    public Tutorial(){
+      clickCount=0;
       lp = new JLayeredPane();
       panel = Game.panel;
       panel.addMouseListener(new ClickHandler());
@@ -33,6 +58,10 @@ public class Tutorial{
       lp.setOpaque(true);
       lp.setVisible(true);
   }
+  /**
+   * Ran inside Tutorial
+   * Title makes the Tutorial text at the top of the screen
+  */
   public void title(){
       JLabel label1 = new JLabel("Tutorial");
       label1.setFont(new Font("Serif", Font.BOLD, 30));
@@ -41,6 +70,10 @@ public class Tutorial{
       label1.setBounds(340, 10, 300, 50);
       lp.add(label1,1);
   }
+  /**
+   * Ran inside Tutorial
+   * Campign manager placed in the bottom left of the screen
+  */
   public void campignManager(){
       JLabel label=new JLabel("");
       Image img= new ImageIcon(this.getClass().getResource("/image/business-man-hi.png")).getImage();
@@ -49,6 +82,10 @@ public class Tutorial{
       panel.setLayout(null);
       lp.add(label,JLayeredPane.PALETTE_LAYER);
   }
+  /**
+   * Ran inside Tutorial
+   * textBox contains all the lines for the dialogue
+  */
   public void textBox(){
       line1 =new JLabel("[Click To Continue]");
       line1.setFont(new Font("Serif", Font.PLAIN, 24));
@@ -69,6 +106,10 @@ public class Tutorial{
       line3.setOpaque(true);
       lp.add(line3,JLayeredPane.PALETTE_LAYER);
   }
+  /**
+   * Ran inside Tutorial
+   * slideImage creates the first image seen, the Wallaby party logo.
+  */
   public void slideImage(){
       slide=new JLabel("");
       Image img= new ImageIcon(this.getClass().getResource("/image/WallabyPartyLogo.png")).getImage();
@@ -77,6 +118,11 @@ public class Tutorial{
       slide.setBounds(200,44,500,280);
       lp.add(slide,JLayeredPane.PALETTE_LAYER);
   }
+  /**
+   * Ran inside Tutorial
+   * slide2 move the logo to the left side screen.
+   * Also, shows the policies of the Wallaby party.
+  */
   public void slide2(){
    image= new JLabel("");
    //image of Wallaby Party
@@ -137,7 +183,17 @@ public class Tutorial{
    lp.add(policy5,JLayeredPane.PALETTE_LAYER);
    lp.add(policy6,JLayeredPane.PALETTE_LAYER);
   }
+  /*
+   *ClickHandler for the tutorial class.
+   *Runs MouseClicked which activates when a user clicks
+  */
   class ClickHandler extends MouseAdapter{
+      /**
+       *Mouse Clicked
+       *@param MouseEvent e
+       *This will call repaint for the layeredpane
+       *Also updates the text label based on the amount of clicks done.
+      */
       public void mouseClicked(MouseEvent e) {
       lp.repaint();
       System.out.println(e.getX()+","+e.getY());
