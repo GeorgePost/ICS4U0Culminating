@@ -233,26 +233,27 @@ public class Tutorial{
             policy4.setVisible(false);
             policy5.setVisible(false);
             policy6.setVisible(false);
+            line1.setText("Here are your conversation boxes. Click on them to");
+            line2.setText("to respond to the person. This response will affect");
+            line3.setText("your approval meter. [Click to see Approval Meter]");
+         }
+         if(clickCount==6){
             line1.setText("Here is your approval meter. If you say something a");
             line2.setText("person doesn’t like, the approval meter will decrease.");
             line3.setText("[Click to Continue]");
-         }if(clickCount==6){
+         }if(clickCount==7){
             line1.setText("The approval meter will increase if you say something a");
             line2.setText("person likes. If the approval Meter falls all the way to");
             line3.setText("the left side, you have failed the level.[Click to Continue]");
-         }if(clickCount==7){
+         }if(clickCount==8){
             line1.setText("If the approval meter reaches the right side, you have");
             line2.setText("successfully completed the level. [Click to Continue]");
             line3.setText("");
          }
-         if(clickCount==8){
+         if(clickCount==9){
             line1.setText("What AIs like yourself may struggle with is finding when");
-            line2.setText("a person is not engaged in the conversation.");
-            line3.setText("[Click to Continue]");
-         }if(clickCount==9){
-            line1.setText("Always be on the lookout and if the person is not engaged");
-            line2.setText("click the leave button on your screen.[Click to Continue]");
-            line3.setText("");
+            line2.setText("a person is not engaged in the conversation. Make sure");
+            line3.setText("to regain their attention [Click to Continue]");
          }if(clickCount==10){
             line1.setText("Another problem AIs run into is when to tell about the");
             line2.setText("party and when to ask the person to vote for the party.");
@@ -267,8 +268,8 @@ public class Tutorial{
             line3.setText("want.[Click to Continue]");
          }if(clickCount==13){
             line1.setText("If you are telling about a policy they won’t like, they ");
-            line2.setText("probably won’t vote for your party. Thanks for Supporting ");
-            line3.setText("Wallaby and Co, starting simulation after click");
+            line2.setText("probably won’t vote for your party. Thanks for ");
+            line3.setText("supporting Wallaby and Co [Click for Main Menu]");
          }
    }
    }
@@ -290,6 +291,7 @@ public class Tutorial{
          g.setColor(yellow);
          int movement=(int)((value/100.0)*width);
          g.fillOval(x+movement-7,y-2,15,15);
+      }
       /**
         *method to make a face with width and state
         *@param x is the x-coordinate of the face
@@ -298,7 +300,7 @@ public class Tutorial{
         *@param state is the state of the face. 0 is sad, 1 is meh, 2 is happy.
         *@param g is the Graphics class, so we can display our face
       */
-      }public void face(int x,int y, int width, int state, Graphics g){
+      public void face(int x,int y, int width, int state, Graphics g){
          Graphics2D h = (Graphics2D) g;
          g.setColor(yellow);
          g.fillOval(x,y,width,width);
@@ -324,7 +326,20 @@ public class Tutorial{
          g.fillRect(0,0,800,500);
          g.setColor(lightGrey);
          g.fillRoundRect(150,300,600,150,20,20);
-         if(clickCount>4 && clickCount<=7){
+         if(clickCount==5){
+            g.fillRoundRect(450,40,300,75,30,30);
+            g.fillRoundRect(450,120,300,50,15,15);
+            g.fillRoundRect(450,175,300,50,15,15);
+            g.fillRoundRect(450,230,300,50,15,15);
+            Font font = new Font("SansSerif", Font.PLAIN,20);
+            h.setColor(Color.BLACK);
+            h.setFont(font);
+            h.drawString("What's the best gaming Company",455,90);
+            h.drawString("Ubihard",570,155);
+            h.drawString("Big C Studios",540,210);
+            h.drawString("Wallaby and Co",535,265);
+         }
+         if(clickCount>=6 && clickCount<=8){
             slider(50,115,200,25,g);
             face(100,10,100,0,g);
             slider(300,115,200,50,g);
