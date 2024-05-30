@@ -8,7 +8,6 @@ public class Game
     public static void main (String[] args)
     {
         frameSetup();
-        new Conversation();
         newScene(1);
         frame.repaint();
     }
@@ -38,7 +37,7 @@ public class Game
 
     public static void newScene(int sc)
     {
-        /*switch (sc){
+        switch (sc){
             case 1:
                 new TitleScreen();
                 break;
@@ -48,7 +47,7 @@ public class Game
             case 3:
                 new Tutorial();
                 break;
-        }*/
+        }
     }
 
 }

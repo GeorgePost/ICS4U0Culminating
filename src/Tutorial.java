@@ -30,7 +30,7 @@ public class Tutorial{
    /**Keeps track of the user's amount of clicks in the scene*/
    private int clickCount;
    /**Setting all the Labels for the slides*/
-   private JLabel line1,line2,line3,slide,image,policy1,policy2,policy3,policy4,policy5,policy6;
+   private JLabel line1,line2,line3,slide,image,policy1,policy2,policy3,policy4,policy5,policy6,AIimage,logo;
    /**Setting the frame from Game*/
    JFrame frame= Game.frame;
    /**Layered pane, so that Labels and paint work together*/
@@ -53,6 +53,7 @@ public class Tutorial{
       textBox();
       slideImage();
       slide2();
+      AILimitations();
       panel.add(lp);
       frame.add(lp);
       lp.setOpaque(true);
@@ -111,8 +112,21 @@ public class Tutorial{
    * slideImage creates the first image seen, the Wallaby party logo.
   */
   public void slideImage(){
-      slide=new JLabel("");
+      logo=new JLabel("");
       Image img= new ImageIcon(this.getClass().getResource("/image/WallabyPartyLogo.png")).getImage();
+      Image newImage=img.getScaledInstance(384,384,Image.SCALE_SMOOTH);
+      logo.setIcon(new ImageIcon(newImage));
+      logo.setBounds(200,44,500,280);
+      logo.setVisible(false);
+      lp.add(logo,JLayeredPane.PALETTE_LAYER);
+  }
+  /**
+   * Ran inside Tutorial
+   * Wallaby Logo creates the first image seen, the Wallaby party logo.
+  */
+  public void slideImage(){
+      slide=new JLabel("");
+      Image img= new ImageIcon(this.getClass().getResource("/image/WallabyAndCoLogo.png")).getImage();
       Image newImage=img.getScaledInstance(384,384,Image.SCALE_SMOOTH);
       slide.setIcon(new ImageIcon(newImage));
       slide.setBounds(200,44,500,280);
@@ -183,6 +197,19 @@ public class Tutorial{
    lp.add(policy5,JLayeredPane.PALETTE_LAYER);
    lp.add(policy6,JLayeredPane.PALETTE_LAYER);
   }
+  /**
+   * Ran inside Tutorial
+   * AILimitations creates the AI image seen throughout the AI limitations speech
+  */
+  public void AILimitations(){
+      AIimage=new JLabel("");
+      Image img= new ImageIcon(this.getClass().getResource("/image/AIteaching.png")).getImage();
+      Image newImage=img.getScaledInstance(384,384,Image.SCALE_SMOOTH);
+      AIimage.setIcon(new ImageIcon(newImage));
+      AIimage.setBounds(200,10,500,280);
+      AIimage.setVisible(false);
+      lp.add(AIimage,JLayeredPane.PALETTE_LAYER);
+  }
   /*
    *ClickHandler for the tutorial class.
    *Runs MouseClicked which activates when a user clicks
@@ -251,6 +278,7 @@ public class Tutorial{
             line3.setText("");
          }
          if(clickCount==9){
+            AIimage.setVisible(true);
             line1.setText("What AIs like yourself may struggle with is finding when");
             line2.setText("a person is not engaged in the conversation. Make sure");
             line3.setText("to regain their attention [Click to Continue]");
@@ -267,10 +295,14 @@ public class Tutorial{
             line2.setText("certain topics.As it is important to give the person what they");
             line3.setText("want.[Click to Continue]");
          }if(clickCount==13){
+            AIimage.setVisible(false);  
+            logo.setVisible(true);
             line1.setText("If you are telling about a policy they won’t like, they ");
             line2.setText("probably won’t vote for your party. Thanks for ");
             line3.setText("supporting Wallaby and Co [Click for Main Menu]");
-         }
+         }if(clickCount==14){
+            Game.changeScene(2);
+         }  
    }
    }
    /**
