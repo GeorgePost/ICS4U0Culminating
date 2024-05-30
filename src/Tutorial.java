@@ -195,9 +195,10 @@ public class Tutorial{
        *Also updates the text label based on the amount of clicks done.
       */
       public void mouseClicked(MouseEvent e) {
-      lp.repaint();
-      System.out.println(e.getX()+","+e.getY());
-          clickCount++;
+         clickCount++;
+          lp.repaint();
+          System.out.println(e.getX()+","+e.getY());
+          
           if(clickCount==1){
             line1.setText("Welcome to Wallaby and Co’s AI political door to door");
             line2.setText("campaign program.[Click to Continue]");
@@ -244,15 +245,59 @@ public class Tutorial{
             line2.setText("successfully completed the level. [Click to Continue]");
             line3.setText("");
          }
+         if(clickCount==8){
+            line1.setText("What AIs like yourself may struggle with is finding when");
+            line2.setText("a person is not engaged in the conversation.");
+            line3.setText("[Click to Continue]");
+         }if(clickCount==9){
+            line1.setText("Always be on the lookout and if the person is not engaged");
+            line2.setText("click the leave button on your screen.[Click to Continue]");
+            line3.setText("");
+         }if(clickCount==10){
+            line1.setText("Another problem AIs run into is when to tell about the");
+            line2.setText("party and when to ask the person to vote for the party.");
+            line3.setText("[Click to Continue]");
+         }if(clickCount==11){
+            line1.setText("You should always at the beginning have the person ");
+            line2.setText("understand the party and then ask them to vote. ");
+            line3.setText("[Click to Continue]");
+         }if(clickCount==12){
+            line1.setText("Especially in Level 2, always evaluate the person’s views of");
+            line2.setText("certain topics.As it is important to give the person what they");
+            line3.setText("want.[Click to Continue]");
+         }if(clickCount==13){
+            line1.setText("If you are telling about a policy they won’t like, they ");
+            line2.setText("probably won’t vote for your party. Thanks for Supporting ");
+            line3.setText("Wallaby and Co, starting simulation after click");
+         }
    }
    }
+   /**
+     *Drawing Class for Tutorial
+     *Will contain all drawings used int the project 
+   */
    class Drawing extends JComponent{
+      /**
+        *method to make a slider with a certain width and value
+        *@param x is the x-coordinate of the slider
+        *@param y is the y coordinate of the slider
+        *@param value is a value between 0-100, which decides where the circle is
+        *@param g is the Graphics class, so we can display our slider
+      */
       public void slider(int x,int y, int width, int value, Graphics g){
          g.setColor(darkYellow);
          g.fillRoundRect(x,y,width,10,10,10);
          g.setColor(yellow);
          int movement=(int)((value/100.0)*width);
          g.fillOval(x+movement-7,y-2,15,15);
+      /**
+        *method to make a face with width and state
+        *@param x is the x-coordinate of the face
+        *@param y is the y coordinate of the face
+        *@param width is the width of the face. The face is scalable for every 10 pixels
+        *@param state is the state of the face. 0 is sad, 1 is meh, 2 is happy.
+        *@param g is the Graphics class, so we can display our face
+      */
       }public void face(int x,int y, int width, int state, Graphics g){
          Graphics2D h = (Graphics2D) g;
          g.setColor(yellow);
@@ -269,6 +314,10 @@ public class Tutorial{
             g.fillRect(x+(width/5),y+(width/10)*7,width/5*3,5);
          }
       }
+      /*
+       *the paint method makes the background and the box for the diagolue
+       *the paint method also handles the visuals for slide 5-7
+      */
       public void paint(Graphics g){
          Graphics2D h = (Graphics2D) g;
          g.setColor(backgroundColor); 
