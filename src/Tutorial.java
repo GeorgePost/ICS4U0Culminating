@@ -7,7 +7,7 @@ import javax.swing.*;
  * <strong>Course info:</strong>
  * ICS4U0 with V. Krasteva
  * @author:George Postica
- * @version: 0.2.8
+ * @version: 0.3.3
  * Created on May 21,2024
 */
 public class Tutorial{
@@ -56,9 +56,10 @@ public class Tutorial{
       logoImage();
       slide2();
       AILimitations();
-      frame.add(lp);
       lp.setOpaque(true);
       lp.setVisible(true);
+      lp.setBounds(0,0,800,500);
+      panel.add(lp);
       panel.setOpaque(true);
       panel.setVisible(true);
   }
@@ -117,9 +118,9 @@ public class Tutorial{
   public void logoImage(){
       logo=new JLabel("");
       Image img= new ImageIcon(this.getClass().getResource("/image/WallabyAndCoLogo.png")).getImage();
-      Image newImage=img.getScaledInstance(384,384,Image.SCALE_SMOOTH);
+      Image newImage=img.getScaledInstance(256,256,Image.SCALE_SMOOTH);
       logo.setIcon(new ImageIcon(newImage));
-      logo.setBounds(200,44,500,280);
+      logo.setBounds(320,20,500,280);
       logo.setVisible(false);
       lp.add(logo,JLayeredPane.PALETTE_LAYER);
   }
@@ -316,7 +317,7 @@ public class Tutorial{
    */
    class Drawing extends JComponent{
       /**
-        *method to make a slider with a certain width and value
+        *Amethod to make a slider with a certain width and value
         *@param x is the x-coordinate of the slider
         *@param y is the y coordinate of the slider
         *@param value is a value between 0-100, which decides where the circle is
@@ -391,6 +392,13 @@ public class Tutorial{
             h.setColor(orange);
             h.drawString("You Win",500,200);
             slider(500,220,200,100,g);
+         }
+         if(clickCount==13){
+            g.fillOval(300,0,300,300);
+            Font font = new Font("Serif", Font.PLAIN,30);
+            h.setColor(Color.BLUE);
+            h.setFont(font);
+            h.drawString("Wallay and Co",365,265);
          }
       }
    }
