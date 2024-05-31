@@ -1,13 +1,33 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+/*
+ * This handles all the other clases in the game
+ * This class holds the main frame and panel.
+ * It also contians the scene number the user is on to not confuse classes
+ * <strong>Course info:</strong>
+ * ICS4U0 with V. Krasteva
+ * @author:Mitchell Levitt
+ * @version: 0.3.1
+ * Created on May 21,2024
+ */
 public class MainMenu implements ActionListener{
+    /**Holds the drawing instance of the scene*/
     Drawing draw = new Drawing();
+    /**has integer values of the mouse coordinates*/
     int mouseX = 0, mouseY = 0;
+    /**The Start button*/
     JButton button1 = new JButton("Start");
+    /**The Tutorial button*/
     JButton button2 = new JButton("Tutorial");
+    /**The intro panel, which is just the game panel*/
     JPanel introPanel = Game.panel;
+    /**The light blue color*/
     Color lightBlue = new Color(0, 234, 255);
+    /**The constructor
+     * adds clickhandler to draw and set the introPanel to a null layout
+     * Runs button and title
+     */
     public MainMenu(){
         draw.addMouseListener(new ClickHandler());
         introPanel.setLayout(null);
@@ -15,6 +35,9 @@ public class MainMenu implements ActionListener{
         title();
         introPanel.setBackground(Color.BLACK);
     }
+    /**
+     * Places the Title main menu with lightblue colour font at the top of the screen
+     */
     public void title(){
         JLabel label1 = new JLabel("Main Menu");
         label1.setFont(new Font("Serif", Font.BOLD, 30));
@@ -24,6 +47,10 @@ public class MainMenu implements ActionListener{
 
         introPanel.add(label1);
     }
+    /**
+     * Adjusts the buttons, so that they are at the middle of the screen
+     * Adds listeners and adds them to panel
+     */
     public void buttons(){
 
         button1.addActionListener(this);
@@ -45,27 +72,43 @@ public class MainMenu implements ActionListener{
         introPanel.add(button1);
         introPanel.add(button2);
     }
+    /**
+     * Clickhanlder class handles the clicks of this scene
+     */
     class ClickHandler extends MouseAdapter{
+        /**
+         * Find the coordinate of the mouse when clicked and updates mouseX and mouseY
+         * repaints draw
+         * @param e Mouse event to find the mouse position when clicked
+         */
         public void mouseClicked(MouseEvent e) {
             mouseX = e.getX();
             mouseY = e.getY();
             draw.repaint();
         }
     }
-
+    /**
+     * Draw Class
+     * holds the drawings for the scene
+     */
     class Drawing extends JComponent{
+        /**
+         * Drawing method
+         * @param g hold the Graphics variable, which is passed to use its class.
+         */
         public void paint(Graphics g){
 
         }
     }
-
+    /**
+     * action performed method
+     * Checks which button is clicked and changes the scene based on that
+     * @param e holds the Action event variable.
+     */
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == button2){
+        if (e.getSource() == button2) {
             Game.changeScene(3);
         }
-    }
-    public static void main(String[] args){
-        new MainMenu();
     }
 }
 

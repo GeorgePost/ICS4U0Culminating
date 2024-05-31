@@ -44,6 +44,7 @@ public class Tutorial{
       clickCount=0;
       lp = new JLayeredPane();
       panel = Game.panel;
+      panel.setLayout(null);
       panel.addMouseListener(new ClickHandler());
       lp.add(draw,JLayeredPane.DEFAULT_LAYER);
       draw.setBounds(0,0,800,500);
@@ -52,12 +53,14 @@ public class Tutorial{
       campignManager();
       textBox();
       slideImage();
+      logoImage();
       slide2();
       AILimitations();
-      panel.add(lp);
       frame.add(lp);
       lp.setOpaque(true);
       lp.setVisible(true);
+      panel.setOpaque(true);
+      panel.setVisible(true);
   }
   /**
    * Ran inside Tutorial
@@ -109,11 +112,11 @@ public class Tutorial{
   }
   /**
    * Ran inside Tutorial
-   * slideImage creates the first image seen, the Wallaby party logo.
+   * creates the last image seen, the Wallaby and Co logo.
   */
-  public void slideImage(){
+  public void logoImage(){
       logo=new JLabel("");
-      Image img= new ImageIcon(this.getClass().getResource("/image/WallabyPartyLogo.png")).getImage();
+      Image img= new ImageIcon(this.getClass().getResource("/image/WallabyAndCoLogo.png")).getImage();
       Image newImage=img.getScaledInstance(384,384,Image.SCALE_SMOOTH);
       logo.setIcon(new ImageIcon(newImage));
       logo.setBounds(200,44,500,280);
@@ -126,7 +129,7 @@ public class Tutorial{
   */
   public void slideImage(){
       slide=new JLabel("");
-      Image img= new ImageIcon(this.getClass().getResource("/image/WallabyAndCoLogo.png")).getImage();
+      Image img= new ImageIcon(this.getClass().getResource("/image/WallabyPartyLogo.png")).getImage();
       Image newImage=img.getScaledInstance(384,384,Image.SCALE_SMOOTH);
       slide.setIcon(new ImageIcon(newImage));
       slide.setBounds(200,44,500,280);
@@ -217,15 +220,17 @@ public class Tutorial{
   class ClickHandler extends MouseAdapter{
       /**
        *Mouse Clicked
-       *@param MouseEvent e
-       *This will call repaint for the layeredpane
+       *@param e contains the MouseEvent
+       *This will call repaint for the layered pane
        *Also updates the text label based on the amount of clicks done.
       */
       public void mouseClicked(MouseEvent e) {
          clickCount++;
           lp.repaint();
           System.out.println(e.getX()+","+e.getY());
-          
+          if(Game.sceneNum!=3){
+              return;
+          }
           if(clickCount==1){
             line1.setText("Welcome to Wallaby and Co’s AI political door to door");
             line2.setText("campaign program.[Click to Continue]");
