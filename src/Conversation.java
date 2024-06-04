@@ -10,7 +10,7 @@ import java.util.*;
  * @author Mitchell
  * @version 0.3.1
 */
-public class Conversation{
+public abstract class Conversation{
     /**
      * Door drawing to be accessed by scene classes
      */
@@ -91,7 +91,7 @@ public class Conversation{
      */
     public ArrayList<String> textFormat(String message, int pixLength, JComponent object)
     {
-
+        message+=" ";
         if(object instanceof Option) {
             Option op = (Option) object;
             ArrayList<String> lines = new ArrayList<>();
@@ -100,10 +100,10 @@ public class Conversation{
                 int wordLen = op.m.stringWidth(message.substring(0, message.indexOf(" ")));
                 if (op.m.stringWidth(lines.get(lines.size() - 1)) + wordLen >= pixLength)
                     lines.add("");
-                if (op.m.stringWidth(lines.get(lines.size() - 1)) + wordLen <= pixLength) {
+                //if (op.m.stringWidth(lines.get(lines.size() - 1)) + wordLen <= pixLength) {
                     lines.set(lines.size() - 1, lines.get(lines.size() - 1) + message.substring(0, message.indexOf(" ")) + " ");
                     message = message.substring(message.indexOf(" ") + 1);
-                }
+                //}
             }
             return lines;
         }
@@ -128,15 +128,17 @@ public class Conversation{
             return null;
         }
     }
+    public abstract void mouseClick(int x, int y);
 
     /**
      * <p>
      *     This embedded class provides the Conversation class with a mouse listener, and is used for debugging
      * </p>
      */
-       static class ClickHandler extends MouseAdapter{
+        class ClickHandler extends MouseAdapter{
         public void mouseClicked(MouseEvent e) {
             System.out.println(e.getX()+","+e.getY());
+            mouseClick(e.getX(),e.getY());
         }
     }
     /**
@@ -202,7 +204,7 @@ public class Conversation{
          */
         public void setMessage(String str)
         {
-            setMessage(textFormat(str, 220, this));
+            setMessage(textFormat(str, 370, this));
         }
 
         /**
@@ -212,8 +214,11 @@ public class Conversation{
         public void setMessage(ArrayList<String> str)
         {
             for(int i = 0; i<3; i++)
+                message.set(i,"");
+            for(int i = 0; i<3 && i<str.size(); i++)
                 message.set(i,str.get(i));
-            drawOp1.repaint();
+            this.repaint();
+            System.out.println(str);
         }
         /**
          *paints the text box, and draws out the lines of the message array
@@ -270,8 +275,10 @@ public class Conversation{
          public void setMessage(ArrayList<String> str)
         {
             for(int i = 0; i<4; i++)
+                message.set(i,"");
+            for(int i = 0; i<4 && i<str.size(); i++)
                 message.set(i,str.get(i));
-            drawOp1.repaint();
+            this.repaint();
         }
         /**
          * calls the textFormat method in the main class to create an arraylist and passes it to the first setMessage method
@@ -279,11 +286,8 @@ public class Conversation{
          */
         public void setMessage(String str)
         {
-            ArrayList<String> lines;
-            lines = textFormat(str, 220, this);
-            for(int i = 0; i<3 && i<lines.size(); i++)
-                message.set(i,lines.get(i));
-            drawOp1.repaint();
+            setMessage(textFormat(str, 220, this));
+            this.repaint();
         }
         /**
          *paints the text box, and draws out the lines of the message array
@@ -315,28 +319,28 @@ public class Conversation{
      * @version 0.3.1
      */
     class ApprovalMeter extends JComponent {
-        int value = 0;
+        int value = 50;
         /**
          * @param g the graphics object being painted on
          * calls drawMeter method with default dimensions
          */
      public void paintComponent(Graphics g){
             super.paintComponent(g);
-            drawMeter(0,10,200,50,g);
+            drawMeter(0,10,200,g);
           }
 
         /**
          * @param x the horizontal location of the meter
          * @param y the vertical location of the meter
          * @param width the width of the meter
-         * @param value the value of the meter
          * @param g the graphics object being painted on
          */
-     public void drawMeter(int x, int y, int width, int value, Graphics g){
-            this.value = value;
-            g.setColor(darkYellow);
+     public void drawMeter(int x, int y, int width, Graphics g){
+            Color slider = new Color((int)(200-2*value),(int)(2*value),0);
+            g.setColor(slider);
             g.fillRoundRect(x,y,width,10,10,10);
-            g.setColor(yellow);
+            Color ball = new Color((int)(255-2.55*value),(int)(2.55*value),0);
+            g.setColor(ball);
             int movement=(int)((value/100.0)*width);
             g.fillOval(x+movement-7,y-2,15,15);
 
@@ -351,5 +355,23 @@ public class Conversation{
            value = v;
            repaint();
        }
+
+        /**
+         * Accessor method for the value variable
+         * @return the integer value of the value variable
+         */
+       public int getValue()
+       {
+           return value;
+       }
+        /**
+         * increases the value of the meter
+         * @param v the integer being added to value
+         */
+        public void incrValue(int v)
+        {
+            value += v;
+            repaint();
+        }
    }
 }
