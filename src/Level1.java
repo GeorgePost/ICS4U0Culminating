@@ -2,7 +2,7 @@
  * Extends conversation cals to create the scene for the level one conversation
  * @author  Mitchell Levitt
  * @since 0.3.5
- * @version 0.3.6
+ * @version 0.3.7
  */
 public class Level1 extends Conversation
 {
@@ -21,9 +21,9 @@ public class Level1 extends Conversation
      */
     public Level1()
     {
-        responses = new String[7][3];
-        choices = new String[6][3];
-        correctChoices = new boolean[6][3];
+        responses = new String[6][3];
+        choices = new String[5][3];
+        correctChoices = new boolean[5][3];
         fillDialogue();
         clickNum = 0;
         startText();
@@ -35,71 +35,43 @@ public class Level1 extends Conversation
      */
     public void fillDialogue()
     {
-      /*responses[0][0] = "What is the greatest game development company of all time?";
-      responses[1][0] = "No, asassin's creed sucks. Well can you at least tell me the best animal.";
-      responses[1][1] = "That's correct! I assume you will also be able to tell me the best animal";
-      responses[1][2] = "Who? I can only assume you meant to speak of the great Walabee And Co. Can you at least tell me the best animal.";
-      responses[2][0] = "A giraffe is just a wrong horse! How about you try to guess my favourite color.";
-      responses[2][1] = "That's not even an animal, it's a mediocre movie. How about you try to guess my favourite color.";
-      responses[2][2] = "Correct, the walabee is by far the best animal. Can you also guess my favourite color?";
-      responses[3][0] = "Of course! Blue is a fantastic color.";
-      responses[3][1] = "Red, that's even worse than green!";
-      responses[3][2] = "green, that's even worse than red!";
-      choices[0][0] = "Ubisoft";
-      choices[0][1] = "Wallabee And Co.";
-      choices[0][2] = "Barnelby And Shmo";
-      choices[1][0] = "The Giraffe";
-      choices[1][1] = "The Batman";
-      choices[1][2] = "The Walabee";
-      choices[2][0] = "Blue";
-      choices[2][1] = "Red";
-      choices[2][2] = "Green";
-      correctChoices[0][1] = true;
-      correctChoices[1][2] = true;
-      correctChoices[2][0] = true;*/
-        responses[0][0] = "Opening Dialogue";
-        responses[1][0] = "Response to Dialogue Option 0.0";
-        responses[1][1] = "Response to Dialogue Option 0.1";
-        responses[1][2] = "Response to Dialogue Option 0.2";
-        responses[2][0] = "Response to Dialogue Option 1.0";
-        responses[2][1] = "Response to Dialogue Option 1.1";
-        responses[2][2] = "Response to Dialogue Option 1.2";
-        responses[3][0] = "Response to Dialogue Option 2.0";
-        responses[3][1] = "Response to Dialogue Option 2.1";
-        responses[3][2] = "Response to Dialogue Option 2.2";
-        responses[4][0] = "Response to Dialogue Option 3.0";
-        responses[4][1] = "Response to Dialogue Option 3.1";
-        responses[4][2] = "Response to Dialogue Option 3.2";
-        responses[5][0] = "Response to Dialogue Option 4.0";
-        responses[5][1] = "Response to Dialogue Option 4.1";
-        responses[5][2] = "Response to Dialogue Option 4.2";
-        responses[6][0] = "Response to Dialogue Option 5.0";
-        responses[6][1] = "Response to Dialogue Option 5.1";
-        responses[6][2] = "Response to Dialogue Option 5.2";
-        choices[0][0] = "Dialogue option 0.0";
-        choices[0][1] = "Dialogue option 0.1";
-        choices[0][2] = "Dialogue option 0.2";
-        choices[1][0] = "Dialogue option 1.0";
-        choices[1][1] = "Dialogue option 1.1";
-        choices[1][2] = "Dialogue option 1.2";
-        choices[2][0] = "Dialogue option 2.0";
-        choices[2][1] = "Dialogue option 2.1";
-        choices[2][2] = "Dialogue option 2.2";
-        choices[3][0] = "Dialogue option 3.0";
-        choices[3][1] = "Dialogue option 3.1";
-        choices[3][2] = "Dialogue option 3.2";
-        choices[4][0] = "Dialogue option 4.0";
-        choices[4][1] = "Dialogue option 4.1";
-        choices[4][2] = "Dialogue option 4.2";
-        choices[5][0] = "Dialogue option 5.0";
-        choices[5][1] = "Dialogue option 5.1";
-        choices[5][2] = "Dialogue option 5.2";
-        correctChoices[0][0] = true;
+        responses[0][0] = "What bring you here today, traveller?";
+        responses[1][0] = "But ...you knocked on my door. I see your wallabee party pin, what is your tax policy?";
+        responses[1][1] = "Umm...I see your wallabee party pin. What is your tax policy? ... Please don't kill me.";
+        responses[1][2] = "Oh, I see. I've never heard of them before. What's your tax policy like?";
+        responses[2][0] = "That sounds great! But if you plan on cutting taxes, what is your environmental policy.";
+        responses[2][1] = "I guess that's a good thing. Do you have an environmental policy?";
+        responses[2][2] = "How are you working in government? Never mind, can you at least tell me about your environmental policy.";
+        responses[3][0] = "That's horrible! Even enviromental issues asside, can you even handle economic issues like inflation?";
+        responses[3][1] = "That sounds like a great idea. What are your thoughts on inflantion";
+        responses[3][2] = "I guess I'll just look it up on your website later. Can you tell me about how you plan to handle inflation?";
+        responses[4][0] = "Yeah, what are you doing in terms of education";
+        responses[4][1] = "Makes sense. What are your thoughts on the education system.";
+        responses[4][2] = "I just ... can't even begin to explain what was wrong with that statement. Do you at least have a plane for eductation?";
+        responses[5][0] = "That is the greatest idea I have ever heard. I'm all for it.";
+        responses[5][1] = "I'd like to imagine that's not true.";
+        responses[5][2] = "What, no. Please don't do that.";
+        choices[0][0] = "That's a good question. I was hoping you would know.";
+        choices[0][1] = "To kill you squire";
+        choices[0][2] = "I want to tell you about the Wallaby Party";
+        choices[1][0] = "We want to support middle class tax cuts for people like you.";
+        choices[1][1] = "We certainly plan to continue them.";
+        choices[1][2] = "What are taxes?";
+        choices[2][0] = "Burn the forests and animals. Who needs em'.";
+        choices[2][1] = "We want to reduce emissions via the investment in clean energy sources like hydro and nuclear.";
+        choices[2][2] = "We certainly have one";
+        choices[3][0] = "It is what it is. People need to learn to work through adversity.";
+        choices[3][1] = "We want to curb inflation by carefully manipulating interest rates.";
+        choices[3][2] = "We are staunch supporters of inflation. The more balloons, the better.";
+        choices[4][0] = "We plan to increase computer science teachers salaries.";
+        choices[4][1] = "Why teach children, when AIs like myself will oneday consume the workforce.";
+        choices[4][2] = "Might as well demolish a few schools. We need room for condos.";
+        correctChoices[0][2] = true;
         correctChoices[1][0] = true;
-        correctChoices[2][0] = true;
-        correctChoices[3][0] = true;
+        correctChoices[2][2] = true;
+        correctChoices[3][1] = true;
         correctChoices[4][0] = true;
-        correctChoices[5][0] = true;
+
     }
 
     /**

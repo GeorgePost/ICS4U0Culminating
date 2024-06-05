@@ -8,7 +8,7 @@ import java.util.*;
  * It contains methods for the creation of drawings as well as editable text boxes.
  * </p>
  * @author Mitchell
- * @version 0.3.6
+ * @version 0.3.7
  */
 public abstract class Conversation{
     /**
@@ -125,11 +125,12 @@ public abstract class Conversation{
                 int wordLen = op.m.stringWidth(message.substring(0, message.indexOf(" ")));
                 if (op.m.stringWidth(lines.get(lines.size() - 1)) + wordLen >= pixLength)
                     lines.add("");
-                //if (op.m.stringWidth(lines.get(lines.size() - 1)) + wordLen <= pixLength) {
-                lines.set(lines.size() - 1, lines.get(lines.size() - 1) + message.substring(0, message.indexOf(" ")) + " ");
-                message = message.substring(message.indexOf(" ") + 1);
-                //}
+                if (op.m.stringWidth(lines.get(lines.size() - 1)) + wordLen <= pixLength) {
+                    lines.set(lines.size() - 1, lines.get(lines.size() - 1) + message.substring(0, message.indexOf(" ")) + " ");
+                    message = message.substring(message.indexOf(" ") + 1);
+                }
             }
+            
             return lines;
         }
         else if(object instanceof Response)
@@ -294,7 +295,7 @@ public abstract class Conversation{
          */
         public void setMessage(String str)
         {
-            setMessage(textFormat(str, 370, this));
+            setMessage(textFormat(str, 220, this));
         }
 
         /**
