@@ -8,7 +8,7 @@ import java.util.*;
  * It contains methods for the creation of drawings as well as editable text boxes.
  * </p>
  * @author Mitchell
- * @version 0.3.7
+ * @version 0.3.9
  */
 public abstract class Conversation{
     /**
@@ -130,7 +130,7 @@ public abstract class Conversation{
                     message = message.substring(message.indexOf(" ") + 1);
                 }
             }
-            
+
             return lines;
         }
         else if(object instanceof Response)
@@ -200,10 +200,10 @@ public abstract class Conversation{
      * This embedded class draws the face of the consituent when crated by the main Conversation class
      * It can customise the face based on size and emotion
      * </p>
-            * @since 0.3.6
-            * @author Mitchell
+     * @since 0.3.6
+     * @author Mitchell
      * @version 0.3.6
-            */
+     */
     class Face extends JComponent{
         /** The emotion portrayed by the face represented by one of three integer values*/
         int state = 1;
@@ -234,7 +234,6 @@ public abstract class Conversation{
             g.fillOval(x+(width/5),y+(width/10)*3,width/5,width/5);
             g.fillOval(x+(width/5)*3,y+(width/10)*3,width/5,width/5);
             h.setStroke(new BasicStroke(4));
-            System.out.println("A");
             if(state==2){
                 h.drawArc(x+(width/5),y+(width/5)*3,width/5*3,width/5,200,140);
             }else if(state==0){
@@ -309,7 +308,6 @@ public abstract class Conversation{
             for(int i = 0; i<3 && i<str.size(); i++)
                 message.set(i,str.get(i));
             this.repaint();
-            System.out.println(str);
         }
         /**
          *paints the text box, and draws out the lines of the message array

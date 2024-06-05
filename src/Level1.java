@@ -36,18 +36,18 @@ public class Level1 extends Conversation
     public void fillDialogue()
     {
         responses[0][0] = "What bring you here today, traveller?";
-        responses[1][0] = "But ...you knocked on my door. I see your wallabee party pin, what is your tax policy?";
-        responses[1][1] = "Umm...I see your wallabee party pin. What is your tax policy? ... Please don't kill me.";
+        responses[1][0] = "But ...you knocked on my door. I see your walabee party pin, what is your tax policy?";
+        responses[1][1] = "Umm...I see your walabee party pin. What is your tax policy? ... Please don't kill me.";
         responses[1][2] = "Oh, I see. I've never heard of them before. What's your tax policy like?";
         responses[2][0] = "That sounds great! But if you plan on cutting taxes, what is your environmental policy.";
         responses[2][1] = "I guess that's a good thing. Do you have an environmental policy?";
         responses[2][2] = "How are you working in government? Never mind, can you at least tell me about your environmental policy.";
-        responses[3][0] = "That's horrible! Even enviromental issues asside, can you even handle economic issues like inflation?";
-        responses[3][1] = "That sounds like a great idea. What are your thoughts on inflantion";
+        responses[3][0] = "That's horrible! Even environmental issues aside, can you even handle economic issues like inflation?";
+        responses[3][1] = "That sounds like a great idea. What are your thoughts on inflation";
         responses[3][2] = "I guess I'll just look it up on your website later. Can you tell me about how you plan to handle inflation?";
         responses[4][0] = "Yeah, what are you doing in terms of education";
         responses[4][1] = "Makes sense. What are your thoughts on the education system.";
-        responses[4][2] = "I just ... can't even begin to explain what was wrong with that statement. Do you at least have a plane for eductation?";
+        responses[4][2] = "I just ... can't even begin to explain what was wrong with that statement. Do you at least have a plane for education?";
         responses[5][0] = "That is the greatest idea I have ever heard. I'm all for it.";
         responses[5][1] = "I'd like to imagine that's not true.";
         responses[5][2] = "What, no. Please don't do that.";
@@ -64,24 +64,24 @@ public class Level1 extends Conversation
         choices[3][1] = "We want to curb inflation by carefully manipulating interest rates.";
         choices[3][2] = "We are staunch supporters of inflation. The more balloons, the better.";
         choices[4][0] = "We plan to increase computer science teachers salaries.";
-        choices[4][1] = "Why teach children, when AIs like myself will oneday consume the workforce.";
+        choices[4][1] = "Why teach children, when AIs like myself will one day consume the workforce.";
         choices[4][2] = "Might as well demolish a few schools. We need room for condos.";
         correctChoices[0][2] = true;
         correctChoices[1][0] = true;
-        correctChoices[2][2] = true;
+        correctChoices[2][1] = true;
         correctChoices[3][1] = true;
         correctChoices[4][0] = true;
 
     }
 
     /**
-     * Calls the respond method when the user clicks on a dialogue option, and passes which option is pressed
+     * Calls the <code>respond</code> method when the user clicks on a dialogue option, and passes which option is pressed
      * @param x the x location of the mouse when clicked
      * @param y the y location of the mouse when clicked
      */
     @Override
     public void mouseClick(int x, int y) {
-        if(x>500 && x<730 && clickNum<choices.length-1)
+        if(x>500 && x<730 && clickNum<choices.length && Game.sceneNum==4)
         {
             if(y>200 && y<275)
                 respond(0);
@@ -107,7 +107,7 @@ public class Level1 extends Conversation
     /**
      * sets response message based on user selected dialogue options
      * generates new dialogue options
-     * modifies aproval meter based on dialogue option selected
+     * modifies approval meter based on dialogue option selected
      * @param i the dialogue option chosen
      */
     public void respond(int i)
@@ -130,9 +130,11 @@ public class Level1 extends Conversation
             face.changeFace(0);
         clickNum++;
         super.drawRes.setMessage(responses[clickNum][i]);
-        super.drawOp1.setMessage(choices[clickNum][0]);
-        super.drawOp2.setMessage(choices[clickNum][1]);
-        super.drawOp3.setMessage(choices[clickNum][2]);
+        if(clickNum<choices.length) {
+            super.drawOp1.setMessage(choices[clickNum][0]);
+            super.drawOp2.setMessage(choices[clickNum][1]);
+            super.drawOp3.setMessage(choices[clickNum][2]);
+        }
 
     }
 
