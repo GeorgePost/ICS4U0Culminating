@@ -25,7 +25,7 @@ public class Game
     public static void main (String[] args)
     {
         frameSetup();
-        newScene(1);
+        newScene(6);
         frame.repaint();
     }
     /**
@@ -80,6 +80,9 @@ public class Game
             case 4:
                 new Level1();
                 break;
+            case 6:
+               new GameOver();
+               break;
         }
     }
 
