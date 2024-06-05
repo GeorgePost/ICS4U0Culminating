@@ -77,6 +77,9 @@ public class Game
             case 3:
                 new Tutorial();
                 break;
+            case 4:
+                new Level1();
+                break;
         }
     }
 

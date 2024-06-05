@@ -1,14 +1,15 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-/*
+/**
  * This handles all the other clases in the game
  * This class holds the main frame and panel.
  * It also contians the scene number the user is on to not confuse classes
  * <strong>Course info:</strong>
  * ICS4U0 with V. Krasteva
- * @author:Mitchell Levitt
- * @version: 0.3.1
+ * @author Mitchell Levitt
+ * @version 0.3.6
+ * @since 0.2.0
  * Created on May 21,2024
  */
 public class MainMenu implements ActionListener{
@@ -108,6 +109,9 @@ public class MainMenu implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button2) {
             Game.changeScene(3);
+        }
+        if (e.getSource() == button1) {
+            Game.changeScene(4);
         }
     }
 }

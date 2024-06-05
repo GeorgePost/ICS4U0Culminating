@@ -8,8 +8,8 @@ import java.util.*;
  * It contains methods for the creation of drawings as well as editable text boxes.
  * </p>
  * @author Mitchell
- * @version 0.3.1
-*/
+ * @version 0.3.6
+ */
 public abstract class Conversation{
     /**
      * Door drawing to be accessed by scene classes
@@ -34,15 +34,20 @@ public abstract class Conversation{
     public Font options = new Font("Serif", Font.PLAIN, 15);
     /**darky ellow color used for rounded rect of the slider*/
     private Color darkYellow=new Color(128,128,0);
-     /**yellow color used for the circle in the slider*/
-   private Color yellow = new Color(238,255,65);
+    /**yellow color used for the circle in the slider*/
+    private Color yellow = new Color(238,255,65);
     /**light blue color used for door frame background*/
     public Color lightBlue = new Color (209,224,228);
     /**blue color used for dialogue option outlines*/
     public Color blue = new Color(0, 208, 255);
     /**brown color used for door frame outlines*/
     public Color brown = new Color(110, 80, 55);
-
+    /**The JLabel made for storing the png file of the constituent at the door*/
+    JLabel person;
+    /** Face to be accessed by scene classes*/
+    Face face;
+    /** The LayeredPane object that contains the drawDoor, person, and face objects*/
+    JLayeredPane insideDoor;
     /**
      * <p>
      *     The default constructor for the Conversation class.
@@ -52,6 +57,9 @@ public abstract class Conversation{
     public Conversation(){
         myPanel = Game.panel;
         myPanel.setBackground(Color.BLACK);
+        insideDoor = new JLayeredPane();
+        insideDoor.setBounds(0,0,800,500);
+        insideDoor.setLayout(null);
         drawDoor = new Door();
         myPanel.addMouseListener(new ClickHandler());
         drawOp1 = new Option();
@@ -63,7 +71,9 @@ public abstract class Conversation{
         drawRes = new Response();
         drawRes.setBounds(500,70,300,200);
         drawDoor.setBounds(0,0,800,500);
-        myPanel.add(drawDoor);
+        insideDoor.add(drawDoor,JLayeredPane.DEFAULT_LAYER);
+        person();
+        myPanel.add(insideDoor);
         myPanel.add(drawOp1);
         myPanel.add(drawOp2);
         myPanel.add(drawOp3);
@@ -76,8 +86,23 @@ public abstract class Conversation{
         myPanel.add(label);
         meter.setBounds(515,20,250,200);
         myPanel.add(meter);
+
         Game.frame.validate();
         Game.frame.repaint();
+    }
+    public void person()
+    {
+        Image img = new ImageIcon(this.getClass().getResource("/image/TheGuyAtTheDoor.png")).getImage();
+        person = new JLabel("");
+        person.setOpaque(true);
+        person.setBackground(lightBlue);
+        person.setIcon(new ImageIcon(img));
+        person.setBounds(230,90,100,280);
+        face = new Face();
+        face.setBounds(245,105,100,100);
+        insideDoor.add(face,JLayeredPane.PALETTE_LAYER);
+        insideDoor.add(person,JLayeredPane.PALETTE_LAYER);
+
     }
     /**
      * <p>
@@ -101,8 +126,8 @@ public abstract class Conversation{
                 if (op.m.stringWidth(lines.get(lines.size() - 1)) + wordLen >= pixLength)
                     lines.add("");
                 //if (op.m.stringWidth(lines.get(lines.size() - 1)) + wordLen <= pixLength) {
-                    lines.set(lines.size() - 1, lines.get(lines.size() - 1) + message.substring(0, message.indexOf(" ")) + " ");
-                    message = message.substring(message.indexOf(" ") + 1);
+                lines.set(lines.size() - 1, lines.get(lines.size() - 1) + message.substring(0, message.indexOf(" ")) + " ");
+                message = message.substring(message.indexOf(" ") + 1);
                 //}
             }
             return lines;
@@ -135,7 +160,7 @@ public abstract class Conversation{
      *     This embedded class provides the Conversation class with a mouse listener, and is used for debugging
      * </p>
      */
-        class ClickHandler extends MouseAdapter{
+    class ClickHandler extends MouseAdapter{
         public void mouseClicked(MouseEvent e) {
             System.out.println(e.getX()+","+e.getY());
             mouseClick(e.getX(),e.getY());
@@ -147,7 +172,7 @@ public abstract class Conversation{
      * </p>
      * @since 0.2.3
      * @author Mitchell
-     * @version 0.3.1
+     * @version 0.3.6
      */
     class Door extends JComponent{
         /**
@@ -171,17 +196,82 @@ public abstract class Conversation{
     }
     /**
      * <p>
+     * This embedded class draws the face of the consituent when crated by the main Conversation class
+     * It can customise the face based on size and emotion
+     * </p>
+            * @since 0.3.6
+            * @author Mitchell
+     * @version 0.3.6
+            */
+    class Face extends JComponent{
+        /** The emotion portrayed by the face represented by one of three integer values*/
+        int state = 1;
+
+        /**
+         * Calls the face method to draw the face
+         * @param g the graphics object being painted on
+         */
+
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+            face(1,1,50,g);
+        }
+        /**
+         *method to make a face with width and state
+         *@param x is the x-coordinate of the face
+         *@param y is the y coordinate of the face
+         *@param width is the width of the face. The face is scalable for every 10 pixels
+         *@param g is the Graphics class, so we can display our face
+         *Written by George originally in <Code>Tutorial</Code>
+         * @see Tutorial
+         */
+        public void face(int x,int y, int width, Graphics g){
+            Graphics2D h = (Graphics2D) g;
+            g.setColor(yellow);
+            g.fillOval(x,y,width,width);
+            g.setColor(Color.BLACK);
+            g.fillOval(x+(width/5),y+(width/10)*3,width/5,width/5);
+            g.fillOval(x+(width/5)*3,y+(width/10)*3,width/5,width/5);
+            h.setStroke(new BasicStroke(4));
+            System.out.println("A");
+            if(state==2){
+                h.drawArc(x+(width/5),y+(width/5)*3,width/5*3,width/5,200,140);
+            }else if(state==0){
+                h.drawArc(x+(width/5),y+(width/10)*7,width/5*3,width/5,20,140);
+            }else{
+                g.fillRect(x+(width/5),y+(width/10)*7,width/5*3,5);
+            }
+        }
+
+        /**
+         * Changes the state of the face and repaints it
+         * @param newState the new state of the face
+         */
+        public void changeFace(int newState)
+        {
+            state = newState;
+            repaint();
+            insideDoor.repaint();
+            myPanel.repaint();
+            Game.frame.repaint();
+        }
+
+    }
+
+
+    /**
+     * <p>
      * This embedded class creates a text box meant to contain player dialogue choices for the conversation class
      * </p>
      * @author Mitchell
      * @since 0.2.7
-     * @version 0.3.1
+     * @version 0.3.6
      */
     class Option extends JComponent{
         /** contains font information from this object, used in textFormat
          * @see Conversation
          * */
-            public FontMetrics m;
+        public FontMetrics m;
         /**
          * Contains the 4 lines of text in the text box
          */
@@ -190,13 +280,13 @@ public abstract class Conversation{
         /**
          * fills message with 4 empty lines, and initialises m
          */
-            public Option(){
+        public Option(){
             message.add("");
             message.add("");
             message.add("");
             message.add("");
             m = getFontMetrics(options);
-            }
+        }
 
         /**
          * calls the textFormat method in the main class to create an arraylist and passes it to the second setMessage method
@@ -226,7 +316,7 @@ public abstract class Conversation{
          */
         public void paintComponent(Graphics g){
             super.paintComponent(g);
-           //  m = g.getFontMetrics(options);
+            //  m = g.getFontMetrics(options);
             Graphics2D h = (Graphics2D) g;
             h.setStroke(new BasicStroke(3));
             g.setColor(Color.WHITE);
@@ -247,32 +337,32 @@ public abstract class Conversation{
      * </p>
      * @author Mitchell
      * @since 0.2.3
-     * @version 0.3.1
+     * @version 0.3.6
      */
     class Response extends JComponent {
         /** contains font information from this object, used in textFormat
          * @see Conversation
-          */
+         */
         public FontMetrics m;
         /**
          * Contains the 4 lines of text in the text box
          */
-         ArrayList<String> message = new ArrayList<String>(4);
+        ArrayList<String> message = new ArrayList<String>(4);
         /**
          * fills message with 4 empty lines, and initialises m
          */
-            public Response(){
+        public Response(){
             message.add("");
             message.add("");
             message.add("");
             message.add("");
-                m = getFontMetrics(options);
-            }
+            m = getFontMetrics(options);
+        }
         /**
          * assigns the elements of the message array list to be equal to th first 4 elements of str
          * @param str the array list being assigned to message elements
          */
-         public void setMessage(ArrayList<String> str)
+        public void setMessage(ArrayList<String> str)
         {
             for(int i = 0; i<4; i++)
                 message.set(i,"");
@@ -316,7 +406,7 @@ public abstract class Conversation{
      * </p>
      * @author Mitchell
      * @since 0.3.1
-     * @version 0.3.1
+     * @version 0.3.6
      */
     class ApprovalMeter extends JComponent {
         int value = 50;
@@ -324,18 +414,19 @@ public abstract class Conversation{
          * @param g the graphics object being painted on
          * calls drawMeter method with default dimensions
          */
-     public void paintComponent(Graphics g){
+        public void paintComponent(Graphics g){
             super.paintComponent(g);
             drawMeter(0,10,200,g);
-          }
+        }
 
         /**
          * @param x the horizontal location of the meter
          * @param y the vertical location of the meter
          * @param width the width of the meter
          * @param g the graphics object being painted on
+         * Written by George, modified by Mitchell
          */
-     public void drawMeter(int x, int y, int width, Graphics g){
+        public void drawMeter(int x, int y, int width, Graphics g){
             Color slider = new Color((int)(200-2*value),(int)(2*value),0);
             g.setColor(slider);
             g.fillRoundRect(x,y,width,10,10,10);
@@ -343,27 +434,26 @@ public abstract class Conversation{
             g.setColor(ball);
             int movement=(int)((value/100.0)*width);
             g.fillOval(x+movement-7,y-2,15,15);
-
-       }
+        }
 
         /**
          * sets the value of the meter
          * @param v the changed value of v
          */
-       public void setValue(int v)
-       {
-           value = v;
-           repaint();
-       }
+        public void setValue(int v)
+        {
+            value = v;
+            repaint();
+        }
 
         /**
          * Accessor method for the value variable
          * @return the integer value of the value variable
          */
-       public int getValue()
-       {
-           return value;
-       }
+        public int getValue()
+        {
+            return value;
+        }
         /**
          * increases the value of the meter
          * @param v the integer being added to value
@@ -373,5 +463,5 @@ public abstract class Conversation{
             value += v;
             repaint();
         }
-   }
+    }
 }
