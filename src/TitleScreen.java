@@ -2,13 +2,13 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 /*
- * Title screen displays company logo when game is run 
+ * Title screen displays company logo when game is run
  * <strong>Course info:</strong>
  * ICS4U0 with V. Krasteva
  * @author: Mitchell Levitt
  * @version: 0.2.8
  * @created May 21
-*/
+ */
 public class TitleScreen{
 
     /**Created draw to display my drawings */
@@ -19,7 +19,7 @@ public class TitleScreen{
      *Constructor for TitleScreen 
      *Creates drawing and the mouse listener, and set background
      *Calls other methods
-   */
+     */
     public TitleScreen(){
 
         myPanel.setBackground(Color.BLACK);
@@ -31,20 +31,33 @@ public class TitleScreen{
         logo();
     }
     /**
-    * Creates and adds a label conatining the text "presents" to the panel
-    */
+     * Creates and adds a label conatining the text "presents" to the panel
+     */
     public void text()
     {
         JLabel label = new JLabel("Presents");
         Font presents = new Font("Serif",Font.ITALIC, 40);
         label.setFont(presents);
         label.setForeground(Color.WHITE);
-        label.setBounds(320,275,300,100);
+        label.setBounds(305,265,300,100);
         myPanel.add(label);
+        JLabel title = new JLabel("Not your Doordinary Adventure");
+        Font titleFont = new Font("SansSerif",Font.BOLD, 32);
+        title.setFont(titleFont);
+        title.setForeground(Color.WHITE);
+        title.setBounds(120,330,800,100);
+        myPanel.add(title);
+        JLabel cont = new JLabel("Click to Continue");
+        Font contFont = new Font("Dialog",Font.PLAIN, 20);
+        cont.setFont(contFont);
+        Color blue = new Color (0, 208, 255);
+        cont.setForeground(blue);
+        cont.setBounds(620,400,200,100);
+        myPanel.add(cont);
     }
     /**
-    * draws the company logo onto the panel
-    */
+     * draws the company logo onto the panel
+     */
     public void logo()
     {
 
@@ -61,7 +74,7 @@ public class TitleScreen{
         layeredPane.add(draw,JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(logo,JLayeredPane.PALETTE_LAYER);
         layeredPane.add(company,JLayeredPane.PALETTE_LAYER);
-        layeredPane.setBounds(300,150,150,150);
+        layeredPane.setBounds(300,130,150,150);
         layeredPane.setOpaque(true);
         layeredPane.setVisible(true);
         myPanel.add(layeredPane);
@@ -70,21 +83,21 @@ public class TitleScreen{
     }
     /**
      *This inner class handles mouse controls for the TitleScreen class
-   */
+     */
     class ClickHandler extends MouseAdapter{
-         /**
-            *Prints the mouse coordinates and changes the scene when mouse is clicked
+        /**
+         *Prints the mouse coordinates and changes the scene when mouse is clicked
          */
         public void mouseClicked(MouseEvent e){
             if(Game.sceneNum==1){
-               Game.changeScene(2);
+                Game.changeScene(2);
             }
         }
     }
-      /**
-      * Inner class crates a drawing object containg a white circle
-      * Added to myPanel
-      */
+    /**
+     * Inner class crates a drawing object containg a white circle
+     * Added to myPanel
+     */
     class Drawing extends JComponent{
         public void paintComponent(Graphics g){
             super.paintComponent(g);
