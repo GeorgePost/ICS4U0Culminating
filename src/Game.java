@@ -27,7 +27,6 @@ public class Game
     {
         frameSetup();
         newScene(1);
-        //newScene(6);
         frame.repaint();
     }
     /**
@@ -54,12 +53,12 @@ public class Game
      * @param sc, which is an integer that indicate the scene number to switch to.
      */
     public static void changeScene(int sc)
-    {
-        sceneNum=sc;
+    {   
         panel.removeAll();
         panel.repaint();
         panel.revalidate();
         newScene(sc);
+        sceneNum=sc;
     }
 
     /**
@@ -84,9 +83,13 @@ public class Game
                 break;
             case 5:
                 new Level2();
+                break;
             case 6:
                 new GameOver();
                 break;
+            case 7:
+               new GameWon(sceneNum);
+               break;
         }
     }
 

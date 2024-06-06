@@ -119,8 +119,10 @@ public class Level2 extends Conversation
         }
         else if(!correctChoices[clickNum][i]) {
             super.meter.incrValue(-25);
-            if (meter.getValue() < 0)
+            if (meter.getValue() < 0){
                 meter.setValue(0);
+                Game.changeScene(6);
+            }
         }
         if(meter.getValue()>50)
             face.changeFace(2);
@@ -134,9 +136,20 @@ public class Level2 extends Conversation
             super.drawOp1.setMessage(choices[clickNum][0]);
             super.drawOp2.setMessage(choices[clickNum][1]);
             super.drawOp3.setMessage(choices[clickNum][2]);
+        }else{
+            endGame();
         }
-
     }
-
+   /**
+    *This decides whether the person has won the level or lost the level used in the respond method.
+    *@author: George Postica
+    */
+    public void endGame(){
+        if(meter.getValue()>50){
+            Game.changeScene(7);
+        }else{
+            Game.changeScene(6);
+        }
+    }
 
 }
