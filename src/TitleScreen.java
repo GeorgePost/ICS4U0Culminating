@@ -76,7 +76,6 @@ public class TitleScreen{
             *Prints the mouse coordinates and changes the scene when mouse is clicked
          */
         public void mouseClicked(MouseEvent e){
-            System.out.println(e.getX()+","+e.getY());
             if(Game.sceneNum==1){
                Game.changeScene(2);
             }

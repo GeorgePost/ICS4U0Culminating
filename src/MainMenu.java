@@ -30,7 +30,6 @@ public class MainMenu implements ActionListener{
      * Runs button and title
      */
     public MainMenu(){
-        draw.addMouseListener(new ClickHandler());
         introPanel.setLayout(null);
         buttons();
         title();
@@ -44,8 +43,8 @@ public class MainMenu implements ActionListener{
         label1.setFont(new Font("Serif", Font.BOLD, 30));
         label1.setForeground(lightBlue);
         label1.setBackground(Color.BLACK);
-        label1.setBounds(280, 10, 300, 50);
-
+        label1.setBounds(325, 10, 300, 50);
+      
         introPanel.add(label1);
     }
     /**
@@ -55,9 +54,9 @@ public class MainMenu implements ActionListener{
     public void buttons(){
 
         button1.addActionListener(this);
-        button1.setBounds(205,130,300,80);
+        button1.setBounds(250,130,300,80);
         button2.addActionListener(this);
-        button2.setBounds(205,250,300,80);
+        button2.setBounds(250,270,300,80);
         button1.setBorder(BorderFactory.createLineBorder(lightBlue, 3));
         button2.setBorder(BorderFactory.createLineBorder(lightBlue, 3));
         button1.setBackground(Color.WHITE);
@@ -68,25 +67,9 @@ public class MainMenu implements ActionListener{
         button2.setPreferredSize(new Dimension(300,70));
         button1.setFont(new Font("Arial",Font.BOLD,22));
         button2.setFont(new Font("Arial",Font.BOLD,22));
-        button1.setBounds(300,130,300,80);
-        button2.setBounds(300,330,300,80);
+
         introPanel.add(button1);
         introPanel.add(button2);
-    }
-    /**
-     * Clickhanlder class handles the clicks of this scene
-     */
-    class ClickHandler extends MouseAdapter{
-        /**
-         * Find the coordinate of the mouse when clicked and updates mouseX and mouseY
-         * repaints draw
-         * @param e Mouse event to find the mouse position when clicked
-         */
-        public void mouseClicked(MouseEvent e) {
-            mouseX = e.getX();
-            mouseY = e.getY();
-            draw.repaint();
-        }
     }
     /**
      * Draw Class

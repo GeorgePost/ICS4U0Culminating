@@ -158,12 +158,16 @@ public abstract class Conversation{
 
     /**
      * <p>
-     *     This embedded class provides the Conversation class with a mouse listener, and is used for debugging
+     *     This embedded class provides the Conversation class with a mouse listener, and is used button pressing
      * </p>
      */
     class ClickHandler extends MouseAdapter{
+         /**
+         *Calls the abstract mouseClick method and passes on mouse x and mouse y information
+         *Used by subclasses
+         *@param e gives information on the mouse event
+         */
         public void mouseClicked(MouseEvent e) {
-            System.out.println(e.getX()+","+e.getY());
             mouseClick(e.getX(),e.getY());
         }
     }

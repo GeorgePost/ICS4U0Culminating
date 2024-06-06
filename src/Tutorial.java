@@ -228,7 +228,6 @@ public class Tutorial{
       public void mouseClicked(MouseEvent e) {
          clickCount++;
           lp.repaint();
-          System.out.println(e.getX()+","+e.getY());
           if(Game.sceneNum!=3){
               return;
           }
