@@ -54,7 +54,6 @@ public class MainMenu implements ActionListener{
      * Adds listeners and adds them to panel
      */
     public void buttons(){
-
         button1.addActionListener(this);
         button2.addActionListener(this);
         exit.addActionListener(this);

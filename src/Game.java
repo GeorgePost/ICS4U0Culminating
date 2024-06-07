@@ -6,7 +6,7 @@
  * <strong>Course info:</strong>
  * ICS4U0 with V. Krasteva
  * @author:Mitchell Levitt
- * @version: 0.3.9
+ * @version: 1.0.0
  * Created on May 21,2024
  */
 import java.awt.*;
@@ -18,7 +18,7 @@ public class Game
     /**This the panel used for displaying. The is the panel is referenced in other clases*/
     public static JPanel panel;
     /**An Integer that keeps track of which scene number we are on, so that other classes click methods don't happen*/
-    public static int sceneNum=5;
+    public static int sceneNum=1;
     /**
      * Main loop method
      * Will setup the frame and panel. Start at Scene 1 and repaint the frame after every iteration.
@@ -26,7 +26,7 @@ public class Game
     public static void main (String[] args)
     {
         frameSetup();
-        newScene(5);
+        newScene(1);
         frame.repaint();
     }
     /**

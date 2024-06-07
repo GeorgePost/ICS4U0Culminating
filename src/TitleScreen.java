@@ -6,7 +6,7 @@ import javax.swing.*;
  * <strong>Course info:</strong>
  * ICS4U0 with V. Krasteva
  * @author: Mitchell Levitt
- * @version: 0.2.8
+ * @version: 1.0.0
  * @created May 21
  */
 public class TitleScreen{
@@ -16,7 +16,7 @@ public class TitleScreen{
     /**Varible to hold Game's panel*/
     JPanel myPanel = Game.panel;
     /**
-     *Constructor for TitleScreen 
+     *Constructor 
      *Creates drawing and the mouse listener, and set background
      *Calls other methods
      */

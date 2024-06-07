@@ -7,7 +7,7 @@ import javax.swing.*;
  * <strong>Course info:</strong>
  * ICS4U0 with V. Krasteva
  * @author:George Postica
- * @version: 0.3.3
+ * @version: 1.0.0
  * Created on May 21,2024
 */
 public class Tutorial{
@@ -226,7 +226,7 @@ public class Tutorial{
        *Also updates the text label based on the amount of clicks done.
       */
       public void mouseClicked(MouseEvent e) {
-         clickCount++;
+          clickCount++;
           lp.repaint();
           if(Game.sceneNum!=3){
               return;
@@ -275,12 +275,12 @@ public class Tutorial{
             line3.setText("[Click to Continue]");
          }if(clickCount==7){
             line1.setText("The approval meter will increase if you say something a");
-            line2.setText("person likes. If the approval Meter falls all the way to");
-            line3.setText("the left side, you have failed the level.[Click to Continue]");
+            line2.setText("person likes. To complete level 1 your approval meter");
+            line3.setText("just needs to be above 0 at the end [Click to Continue]");
          }if(clickCount==8){
-            line1.setText("If the approval meter reaches the right side, you have");
-            line2.setText("successfully completed the level. [Click to Continue]");
-            line3.setText("");
+            line1.setText("For level 2, your meter needs to be above 50. Also in");
+            line2.setText("level 2, if the meter reaches the end, you lose.");
+            line3.setText("[Click to Continue]");
          }
          if(clickCount==9){
             AIimage.setVisible(true);
@@ -390,7 +390,7 @@ public class Tutorial{
             slider(160,220,200,0,g);
             h.setColor(orange);
             h.drawString("You Win",500,200);
-            slider(500,220,200,100,g);
+            slider(500,220,200,50,g);
          }
          if(clickCount==13){
             g.fillOval(300,0,300,300);
