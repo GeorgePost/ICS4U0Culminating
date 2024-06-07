@@ -32,6 +32,7 @@ public class Level2 extends Conversation
         fillDialogue();
         clickNum = 0;
         startText();
+        endGame = false;
     }
 
     /**
@@ -45,7 +46,7 @@ public class Level2 extends Conversation
         responses[1][1] = "Who are you to tell me who I should vote for? You got anything else to say?";
         responses[1][2] = "Alright, I guess I can spare some time. What did you want to talk about?";
         responses[2][0] = "Yes, I would! Please go ahead.";
-        responses[2][1] = "I'll have you know wurms are an essential part of our ecosystem. Tell me, what is your environmental policy?";
+        responses[2][1] = "I'll have you know worms are an essential part of our ecosystem. Tell me, what is your environmental policy?";
         responses[2][2] = "You're the one who knocked on my door! I guess you can tell me about your environmental policy.";
         responses[3][0] = "That's exactly what I've been looking for! But beyond the environment, I'm pretty worried about how expensive housing is getting.";
         responses[3][1] = "Every party says that, it's no reason to vote for you. I'm pretty worried about how expensive housing is getting, do you have a plan to deal with that?";
@@ -60,17 +61,17 @@ public class Level2 extends Conversation
         choices[0][1] = "You should vote for the Wallaby Party";
         choices[0][2] = "I am here on behalf of the Wallaby party to talk about its platforms";
         choices[1][0] = "I notice you have solar panels on your roof, would you like to hear about our environmental policy.";
-        choices[1][1] = "I notice you have your own composter. Wurms suck, am I right?";
+        choices[1][1] = "I notice you have your own composter. Worms suck, am I right?";
         choices[1][2] = "I don't know. What do you want to talk about?";
-        choices[2][0] = "We intend to fund current environmental programs, as well as innovate new initiatives to help our planet. This includes a new green energy project.";
+        choices[2][0] = "We intend to fund current programs, as well as innovate new ways to help our planet. This includes a new green energy project.";
         choices[2][1] = "We care about the environment more than any other party. If you care about the environment, vote for us.";
         choices[2][2] = "We are going to spend more taxpayer money than ever before on green initiatives.";
         choices[3][0] = "Consider yourself lucky you own a house. It's tough times.";
         choices[3][1] = "We intend to sponsor the construction of affordable housing units in order to lower both rent and mortgage prices.";
         choices[3][2] = "We want to build affordable high rise condos in place of houses like this one. That should lower the cost of housing.";
-        choices[4][0] = "Are you kidding me! AI is a scourge to society. In fact now that you mention it, maybe this whole AI campaigning thing was probably a mistake.";
-        choices[4][1] = "Of course! AI is a very powerful tool. We intend to optimize and improve every field of our government using artificial intelligence. We believe that this will bring about great positive change.";
-        choices[4][2] = "An excellent question. We at the Wallaby Party intend to carefully expand the use of AI into the administrative areas of government. However, this expansion will be extremely limited as we understand AI is still a very volatile technology.";
+        choices[4][0] = "Are you kidding me! AI is a scourge to society. In fact now that you mention it, maybe this whole AI campaigning thing was a mistake.";
+        choices[4][1] = "Of course! AI is a very powerful tool. We intend to optimize and improve every field of our government using AI.";
+        choices[4][2] = "Excellent question. We intend to very carefully expand the use of AI into the administrative areas of government.";
         correctChoices[0][2] = true;
         correctChoices[1][0] = true;
         correctChoices[2][0] = true;
@@ -170,6 +171,9 @@ public class Level2 extends Conversation
             }else{
                endGame=true;
                super.drawRes.setMessage(responses[clickNum][i]+" [Click to Continue]");
+               super.drawOp1.setMessage("");
+               super.drawOp2.setMessage("");
+               super.drawOp3.setMessage("");
             }
       }
     }

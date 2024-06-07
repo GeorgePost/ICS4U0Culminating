@@ -28,6 +28,7 @@ public class Level1 extends Conversation
         fillDialogue();
         clickNum = 0;
         startText();
+        endGame = false;
     }
 
     /**
@@ -36,7 +37,7 @@ public class Level1 extends Conversation
      */
     public void fillDialogue()
     {
-        responses[0][0] = "What bring you here today, traveller?";
+        responses[0][0] = "What brings you here today, traveller?";
         responses[1][0] = "But ...you knocked on my door. I see your walabee party pin, what is your tax policy?";
         responses[1][1] = "Umm...I see your walabee party pin. What is your tax policy? ... Please don't kill me.";
         responses[1][2] = "Oh, I see. I've never heard of them before. What's your tax policy like?";
@@ -139,6 +140,9 @@ public class Level1 extends Conversation
             super.drawOp3.setMessage(choices[clickNum][2]);
         }else{
             endGame=true;
+            super.drawOp1.setMessage("");
+            super.drawOp2.setMessage("");
+            super.drawOp3.setMessage("");
         }
     }
     /**

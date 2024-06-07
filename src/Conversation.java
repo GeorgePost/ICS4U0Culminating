@@ -99,6 +99,7 @@ public abstract class Conversation{
         person.setIcon(new ImageIcon(img));
         person.setBounds(230,90,100,280);
         face = new Face();
+
         face.setBounds(245,105,100,100);
         insideDoor.add(face,JLayeredPane.PALETTE_LAYER);
         insideDoor.add(person,JLayeredPane.PALETTE_LAYER);
@@ -232,7 +233,10 @@ public abstract class Conversation{
          */
         public void face(int x,int y, int width, Graphics g){
             Graphics2D h = (Graphics2D) g;
-            g.setColor(yellow);
+            if(Game.sceneNum == 4)
+               g.setColor(new Color(250,218,192));
+            if(Game.sceneNum == 5)
+               g.setColor(new Color(140, 65, 30));
             g.fillOval(x,y,width,width);
             g.setColor(Color.BLACK);
             g.fillOval(x+(width/5),y+(width/10)*3,width/5,width/5);
@@ -259,7 +263,6 @@ public abstract class Conversation{
             myPanel.repaint();
             Game.frame.repaint();
         }
-
     }
 
 
@@ -289,6 +292,7 @@ public abstract class Conversation{
             message.add("");
             message.add("");
             message.add("");
+            message.add("");
             m = getFontMetrics(options);
         }
 
@@ -307,9 +311,9 @@ public abstract class Conversation{
          */
         public void setMessage(ArrayList<String> str)
         {
-            for(int i = 0; i<3; i++)
+            for(int i = 0; i<4; i++)
                 message.set(i,"");
-            for(int i = 0; i<3 && i<str.size(); i++)
+            for(int i = 0; i<4 && i<str.size(); i++)
                 message.set(i,str.get(i));
             this.repaint();
         }
@@ -332,6 +336,7 @@ public abstract class Conversation{
             g.drawString(message.get(1),5,32);
             g.drawString(message.get(2),5,47);
             g.drawString(message.get(3),5,62);
+            g.drawString(message.get(4),5,77);
         }
     }
     /**
@@ -350,11 +355,14 @@ public abstract class Conversation{
         /**
          * Contains the 4 lines of text in the text box
          */
-        ArrayList<String> message = new ArrayList<String>(4);
+        ArrayList<String> message = new ArrayList<String>();
         /**
          * fills message with 4 empty lines, and initialises m
          */
         public Response(){
+            message.add("");
+            message.add("");
+            message.add("");
             message.add("");
             message.add("");
             message.add("");
@@ -367,9 +375,9 @@ public abstract class Conversation{
          */
         public void setMessage(ArrayList<String> str)
         {
-            for(int i = 0; i<4; i++)
+            for(int i = 0; i<7; i++)
                 message.set(i,"");
-            for(int i = 0; i<4 && i<str.size(); i++)
+            for(int i = 0; i<7 && i<str.size(); i++)
                 message.set(i,str.get(i));
             this.repaint();
         }
@@ -400,6 +408,9 @@ public abstract class Conversation{
             g.drawString(message.get(1),5,32);
             g.drawString(message.get(2),5,47);
             g.drawString(message.get(3),5,62);
+            g.drawString(message.get(4),5,77);
+            g.drawString(message.get(5),5,92);
+             g.drawString(message.get(6),5,107);
         }
 
     }
