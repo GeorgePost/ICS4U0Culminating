@@ -21,6 +21,7 @@ public class MainMenu implements ActionListener{
     JButton button1 = new JButton("Start");
     /**The Tutorial button*/
     JButton button2 = new JButton("Tutorial");
+<<<<<<< HEAD
     /**The exit button Created by George */
     JButton exit = new JButton("Exit");
     /**The intro panel, which is just the game panel*/
