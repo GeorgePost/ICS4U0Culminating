@@ -1,3 +1,7 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.util.*;
 /**
  * Extends conversation cals to create the scene for the level two conversation
  * @author  Mitchell Levitt
@@ -94,6 +98,24 @@ public class Level2 extends Conversation
                 respond(2);
         }
     }
+     /**
+     * Calls the <code>respond</code> method when the user clicks on a dialogue option, and passes which option is pressed
+     * @author George Postica
+     */
+     @Override 
+     public void person()
+    {
+        Image img = new ImageIcon(this.getClass().getResource("/image/woman.png")).getImage();
+        super.person = new JLabel("");
+        super.person.setOpaque(true);
+        super.person.setBackground(lightBlue);
+        super.person.setIcon(new ImageIcon(img));
+        super.person.setBounds(185,90,130,280);
+        face = new Face();
+        face.setBounds(245,120,100,100);
+        super.insideDoor.add(face,JLayeredPane.PALETTE_LAYER);
+        super.insideDoor.add(person,JLayeredPane.PALETTE_LAYER);
+    }
 
     /**
      * Sets the initial response and dialogue options before user input
@@ -153,7 +175,7 @@ public class Level2 extends Conversation
     }
    /**
     *This decides whether the person has won the level or lost the level used in the respond method.
-    *@author: George Postica
+    *@author George Postica
     */
     public void endGame(){
         if(meter.getValue()>50){
