@@ -34,6 +34,8 @@ public class GameWon implements ActionListener{
    int sn;
    /**used for the title label, so we can set the string in constructor*/
    String title;
+   /**used for the extra text after the player wins*/
+   boolean gameCompleted=false;
    /**
      *Constructor for Tutorial 
      *Creates the labels, adds the labels and draw to a layered pane.
@@ -48,11 +50,12 @@ public class GameWon implements ActionListener{
       draw.setOpaque(true);
       sn=sceneNum;
       if(sn==4){
-          button = new JButton("Continue to Level 2");
-          title="Level Complete";
+         button = new JButton("Continue to Level 2");
+         title="Level Complete";
       }if(sn==5){
          button = new JButton("Return to Main Menu");
          title="Completed Game";
+         gameCompleted=true;
       }
       title();
       button();
@@ -74,7 +77,10 @@ public class GameWon implements ActionListener{
       label1.setFont(new Font("Serif", Font.BOLD, 30));
       label1.setForeground(lightBlue);
       label1.setBackground(Color.BLACK);
-      label1.setBounds(340, 10, 300, 50);
+      if(gameCompleted)
+         label1.setBounds(270, 10, 300, 50);
+      else 
+         label1.setBounds(275, 10, 300, 50);
       lp.add(label1,JLayeredPane.PALETTE_LAYER);
   }
   
@@ -120,7 +126,7 @@ public class GameWon implements ActionListener{
      */
     public void button(){
         button.addActionListener(this);
-        button.setBounds(250,130,300,80);
+        button.setBounds(230,300,300,80);
         button.setBorder(BorderFactory.createLineBorder(lightBlue, 3));
         button.setBackground(Color.WHITE);
         button.setOpaque(true);
@@ -155,6 +161,16 @@ public class GameWon implements ActionListener{
          g.setColor(Color.BLACK); 
          g.fillRect(0,0,800,500);
          g.setColor(lightGrey);
+         if(gameCompleted){
+            Graphics2D h= (Graphics2D) g;
+            Font font = new Font("SansSerif", Font.PLAIN,30);
+            h.setColor(Color.WHITE);
+            h.setFont(font);
+            h.drawString("Well Done, You have completed",170,105);
+            h.drawString("Wallaby and Co's very own ",200,155);
+            h.drawString("Not your Doordinary Campaign",170,205);
+            h.drawString("Thank you and Great Job",200,255);
+         }
          //g.fillRoundRect(150,300,600,150,20,20);
       }
    }  

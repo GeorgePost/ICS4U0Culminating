@@ -14,7 +14,8 @@ public class Level1 extends Conversation
     boolean[][] correctChoices;
     /** Stores number of times the player has clicked a dialogue option*/
     int clickNum;
-
+    /** This is used to end the game, so the user can see the final response*/
+    boolean endGame = false;
     /**
      * Constructor for Level1 class.
      * Performs basic initialisation of matrices, and calls fillDialogue and startText
@@ -48,9 +49,9 @@ public class Level1 extends Conversation
         responses[4][0] = "Yeah, what are you doing in terms of education";
         responses[4][1] = "Makes sense. What are your thoughts on the education system.";
         responses[4][2] = "I just ... can't even begin to explain what was wrong with that statement. Do you at least have a plane for education?";
-        responses[5][0] = "That is the greatest idea I have ever heard. I'm all for it.";
-        responses[5][1] = "I'd like to imagine that's not true.";
-        responses[5][2] = "What, no. Please don't do that.";
+        responses[5][0] = "That is the greatest idea I have ever heard. I'm all for it. [Click to Finish]";
+        responses[5][1] = "I'd like to imagine that's not true.[Click to Finish]";
+        responses[5][2] = "What, no. Please don't do that.[Click to Finish]";
         choices[0][0] = "That's a good question. I was hoping you would know.";
         choices[0][1] = "To kill you squire";
         choices[0][2] = "I want to tell you about the Wallaby Party";
@@ -89,7 +90,9 @@ public class Level1 extends Conversation
                 respond(1);
             if(y>380 && y<455)
                 respond(2);
-        }
+        }else if(endGame && Game.sceneNum==4){
+            endGame();
+        }   
     }
 
     /**
@@ -135,9 +138,8 @@ public class Level1 extends Conversation
             super.drawOp2.setMessage(choices[clickNum][1]);
             super.drawOp3.setMessage(choices[clickNum][2]);
         }else{
-            endGame();
+            endGame=true;
         }
-
     }
     /**
     *This decides whether the person has won the level or lost the level used in the respond method.

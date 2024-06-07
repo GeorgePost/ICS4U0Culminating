@@ -58,7 +58,7 @@ public class GameOver implements ActionListener{
    * Title makes the text at the top of the screen
   */
   public void title(){
-      JLabel label1 = new JLabel("Game Over");
+      JLabel label1 = new JLabel("Level Lost");
       label1.setFont(new Font("Serif", Font.BOLD, 30));
       label1.setForeground(lightBlue);
       label1.setBackground(Color.BLACK);

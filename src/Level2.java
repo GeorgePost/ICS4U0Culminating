@@ -14,7 +14,8 @@ public class Level2 extends Conversation
     boolean[][] correctChoices;
     /** Stores number of times the player has clicked a dialogue option*/
     int clickNum;
-
+    /** This is used to end the game, so the user can see the final response*/
+    boolean endGame = false;
     /**
      * Constructor for Level2 class.
      * Performs basic initialisation of matrices, and calls fillDialogue and startText
@@ -81,7 +82,9 @@ public class Level2 extends Conversation
      */
     @Override
     public void mouseClick(int x, int y) {
-        if(x>500 && x<730 && clickNum<choices.length && Game.sceneNum==5)
+        if(endGame && Game.sceneNum==5){
+            endGame();
+        }else if(x>500 && x<730 && clickNum<choices.length && Game.sceneNum==5)
         {
             if(y>200 && y<275)
                 respond(0);
@@ -121,7 +124,7 @@ public class Level2 extends Conversation
             super.meter.incrValue(-25);
             if (meter.getValue() < 0){
                 meter.setValue(0);
-                Game.changeScene(6);
+                endGame=true;
             }
         }
         if(meter.getValue()>50)
@@ -131,14 +134,22 @@ public class Level2 extends Conversation
         else
             face.changeFace(0);
         clickNum++;
-        super.drawRes.setMessage(responses[clickNum][i]);
-        if(clickNum<choices.length) {
-            super.drawOp1.setMessage(choices[clickNum][0]);
-            super.drawOp2.setMessage(choices[clickNum][1]);
-            super.drawOp3.setMessage(choices[clickNum][2]);
+        if(endGame){
+            super.drawRes.setMessage("Oops I found a lame excuse for why I should leave [Click to Continue]");
+            super.drawOp1.setMessage("");
+            super.drawOp2.setMessage("");
+            super.drawOp3.setMessage("");
         }else{
-            endGame();
-        }
+            super.drawRes.setMessage(responses[clickNum][i]);
+            if(clickNum<choices.length) {
+               super.drawOp1.setMessage(choices[clickNum][0]);
+               super.drawOp2.setMessage(choices[clickNum][1]);
+               super.drawOp3.setMessage(choices[clickNum][2]);
+            }else{
+               endGame=true;
+               super.drawRes.setMessage(responses[clickNum][i]+" [Click to Continue]");
+            }
+      }
     }
    /**
     *This decides whether the person has won the level or lost the level used in the respond method.

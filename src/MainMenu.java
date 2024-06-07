@@ -21,6 +21,8 @@ public class MainMenu implements ActionListener{
     JButton button1 = new JButton("Start");
     /**The Tutorial button*/
     JButton button2 = new JButton("Tutorial");
+    /**The exit button Created by George */
+    JButton exit = new JButton("Exit");
     /**The intro panel, which is just the game panel*/
     JPanel introPanel = Game.panel;
     /**The light blue color*/
@@ -54,22 +56,29 @@ public class MainMenu implements ActionListener{
     public void buttons(){
 
         button1.addActionListener(this);
-        button1.setBounds(250,130,300,80);
         button2.addActionListener(this);
-        button2.setBounds(250,270,300,80);
+        exit.addActionListener(this);
+        button1.setBounds(250,80,300,80);
+        button2.setBounds(250,200,300,80);
+        exit.setBounds(250,320,300,80);
         button1.setBorder(BorderFactory.createLineBorder(lightBlue, 3));
         button2.setBorder(BorderFactory.createLineBorder(lightBlue, 3));
+        exit.setBorder(BorderFactory.createLineBorder(lightBlue, 3));
         button1.setBackground(Color.WHITE);
         button2.setBackground(Color.WHITE);
+        exit.setBackground(Color.WHITE);
         button1.setOpaque(true);
         button2.setOpaque(true);
+        exit.setOpaque(true);
         button1.setPreferredSize(new Dimension(300,70));
         button2.setPreferredSize(new Dimension(300,70));
+        exit.setPreferredSize(new Dimension(300,70));
         button1.setFont(new Font("Arial",Font.BOLD,22));
         button2.setFont(new Font("Arial",Font.BOLD,22));
-
+        exit.setFont(new Font("Arial",Font.BOLD,22));
         introPanel.add(button1);
         introPanel.add(button2);
+        introPanel.add(exit);
     }
     /**
      * Draw Class
@@ -95,8 +104,11 @@ public class MainMenu implements ActionListener{
         }
         if (e.getSource() == button1) {
             Game.changeScene(4);
+        }if(e.getSource()==exit){
+            Game.frame.dispose();
         }
     }
+    
 }
 
 
