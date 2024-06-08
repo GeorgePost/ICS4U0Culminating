@@ -2,21 +2,17 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 /**
- * This handles all the other clases in the game
- * This class holds the main frame and panel.
- * It also contians the scene number the user is on to not confuse classes
+ * This class acts as a hub to the tutorial and level1, as well as exiting the game
  * <strong>Course info:</strong>
  * ICS4U0 with V. Krasteva
  * @author Mitchell Levitt
- * @version 0.3.6
+ * @version 1.0.0
  * @since 0.2.0
- * Created on May 21,2024
+ * Created on May 21, 2024
+ * Hours spent creating: 2.5
  */
 public class MainMenu implements ActionListener{
-    /**Holds the drawing instance of the scene*/
-    Drawing draw = new Drawing();
-    /**has integer values of the mouse coordinates*/
-    int mouseX = 0, mouseY = 0;
+
     /**The Start button*/
     JButton button1 = new JButton("Start");
     /**The Tutorial button*/
@@ -28,7 +24,6 @@ public class MainMenu implements ActionListener{
     /**The light blue color*/
     Color lightBlue = new Color(0, 234, 255);
     /**The constructor
-     * adds clickhandler to draw and set the introPanel to a null layout
      * Runs button and title
      */
     public MainMenu(){
@@ -38,7 +33,7 @@ public class MainMenu implements ActionListener{
         introPanel.setBackground(Color.BLACK);
     }
     /**
-     * Places the Title main menu with lightblue colour font at the top of the screen
+     * Places the Title main menu with light blue colour font at the top of the screen
      */
     public void title(){
         JLabel label1 = new JLabel("Main Menu");
@@ -80,21 +75,8 @@ public class MainMenu implements ActionListener{
         introPanel.add(exit);
     }
     /**
-     * Draw Class
-     * holds the drawings for the scene
-     */
-    class Drawing extends JComponent{
-        /**
-         * Drawing method
-         * @param g hold the Graphics variable, which is passed to use its class.
-         */
-        public void paint(Graphics g){
-
-        }
-    }
-    /**
      * action performed method
-     * Checks which button is clicked and changes the scene based on that
+     * Checks which button is clicked and changes the scene or exits the game based on that
      * @param e holds the Action event variable.
      */
     public void actionPerformed(ActionEvent e) {

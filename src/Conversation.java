@@ -7,8 +7,11 @@ import java.util.*;
  * This class provides the graphical tools needed to create a conversation scene within the "Not your doordinary adventure" game
  * It contains methods for the creation of drawings as well as editable text boxes.
  * </p>
+ * <strong>Course info:</strong>
+ * ICS4U0 with V. Krasteva
  * @author Mitchell
- * @version 0.3.9
+ * @version 1.0.0
+ * Hours spent creating: 8+2/3
  */
 public abstract class Conversation{
     /**
@@ -29,13 +32,9 @@ public abstract class Conversation{
      */
     protected JPanel myPanel;
     /**
-     * Panel reference made to contain main Game panel
+     * font used for the dialogue options and responses
      */
     public Font options = new Font("Serif", Font.PLAIN, 15);
-    /**darky ellow color used for rounded rect of the slider*/
-    private Color darkYellow=new Color(128,128,0);
-    /**yellow color used for the circle in the slider*/
-    private Color yellow = new Color(238,255,65);
     /**light blue color used for door frame background*/
     public Color lightBlue = new Color (209,224,228);
     /**blue color used for dialogue option outlines*/
@@ -86,10 +85,13 @@ public abstract class Conversation{
         myPanel.add(label);
         meter.setBounds(515,20,250,200);
         myPanel.add(meter);
-
         Game.frame.validate();
         Game.frame.repaint();
     }
+
+    /**
+     * Draws the person in the door using both the Face class and an imported image
+     */
     public void person()
     {
         Image img = new ImageIcon(this.getClass().getResource("/image/TheGuyAtTheDoor.png")).getImage();
@@ -155,6 +157,13 @@ public abstract class Conversation{
             return null;
         }
     }
+
+    /**
+     * This method is called by the ClickHandler class whenever the mouse is clicked
+     * It is to be overridden by subclasses as the event that triggers when the mouse is clicked
+     * @param x the x location of the mouse when clicked
+     * @param y the y location of the mouse when clicked
+     */
     public abstract void mouseClick(int x, int y);
 
     /**
@@ -178,7 +187,7 @@ public abstract class Conversation{
      * </p>
      * @since 0.2.3
      * @author Mitchell
-     * @version 0.3.6
+     * @version 1.0.0
      */
     class Door extends JComponent{
         /**
@@ -202,12 +211,12 @@ public abstract class Conversation{
     }
     /**
      * <p>
-     * This embedded class draws the face of the consituent when crated by the main Conversation class
-     * It can customise the face based on size and emotion
+     * This embedded class draws the face of the constituent when crated by the main Conversation class
+     * It can customise the face based on size and emotion displayed
      * </p>
      * @since 0.3.6
      * @author Mitchell
-     * @version 0.3.6
+     * @version 1.0.0
      */
     class Face extends JComponent{
         /** The emotion portrayed by the face represented by one of three integer values*/
@@ -228,7 +237,7 @@ public abstract class Conversation{
          *@param y is the y coordinate of the face
          *@param width is the width of the face. The face is scalable for every 10 pixels
          *@param g is the Graphics class, so we can display our face
-         *Written by George originally in <Code>Tutorial</Code>
+         *@author  Written by George originally in <Code>Tutorial</Code>
          * @see Tutorial
          */
         public void face(int x,int y, int width, Graphics g){
@@ -272,7 +281,7 @@ public abstract class Conversation{
      * </p>
      * @author Mitchell
      * @since 0.2.7
-     * @version 0.3.6
+     * @version 1.0.0
      */
     class Option extends JComponent{
         /** contains font information from this object, used in textFormat
@@ -280,12 +289,13 @@ public abstract class Conversation{
          * */
         public FontMetrics m;
         /**
-         * Contains the 4 lines of text in the text box
+         * Contains the 5 lines of text in the text box
          */
-        ArrayList<String> message = new ArrayList<String>(4);
+        ArrayList<String> message = new ArrayList<String>(5);
 
         /**
-         * fills message with 4 empty lines, and initialises m
+         * Constructor for the <code>Option</code> class
+         * fills message with 5 empty lines, and initialises m
          */
         public Option(){
             message.add("");
@@ -298,7 +308,7 @@ public abstract class Conversation{
 
         /**
          * calls the textFormat method in the main class to create an arraylist and passes it to the second setMessage method
-         * @param str the text being passed to formatText
+         * @param str the text being passed to textFormat
          */
         public void setMessage(String str)
         {
@@ -306,7 +316,7 @@ public abstract class Conversation{
         }
 
         /**
-         * assigns the elements of the message array list to be equal to th first 3 elements of str
+         * assigns the elements of the message array list to be equal to the first 4 elements of str
          * @param str the array list being assigned to message elements
          */
         public void setMessage(ArrayList<String> str)
@@ -345,7 +355,7 @@ public abstract class Conversation{
      * </p>
      * @author Mitchell
      * @since 0.2.3
-     * @version 0.3.6
+     * @version 1.0.0
      */
     class Response extends JComponent {
         /** contains font information from this object, used in textFormat
@@ -353,11 +363,11 @@ public abstract class Conversation{
          */
         public FontMetrics m;
         /**
-         * Contains the 4 lines of text in the text box
+         * Contains the 7 lines of text in the text box
          */
-        ArrayList<String> message = new ArrayList<String>();
+        ArrayList<String> message = new ArrayList<String>(7);
         /**
-         * fills message with 4 empty lines, and initialises m
+         * fills message with 7 empty lines, and initialises m
          */
         public Response(){
             message.add("");
@@ -370,7 +380,7 @@ public abstract class Conversation{
             m = getFontMetrics(options);
         }
         /**
-         * assigns the elements of the message array list to be equal to th first 4 elements of str
+         * assigns the elements of the message array list to be equal to the first 7 elements of str
          * @param str the array list being assigned to message elements
          */
         public void setMessage(ArrayList<String> str)
@@ -420,7 +430,7 @@ public abstract class Conversation{
      * </p>
      * @author Mitchell
      * @since 0.3.1
-     * @version 0.3.6
+     * @version 1.0.0
      */
     class ApprovalMeter extends JComponent {
         int value = 50;
@@ -438,10 +448,10 @@ public abstract class Conversation{
          * @param y the vertical location of the meter
          * @param width the width of the meter
          * @param g the graphics object being painted on
-         * Written by George, modified by Mitchell
+         * @author Written by George, modified by Mitchell
          */
         public void drawMeter(int x, int y, int width, Graphics g){
-            Color slider = new Color((int)(200-2*value),(int)(2*value),0);
+            Color slider = new Color((200-2*value),(2*value),0);
             g.setColor(slider);
             g.fillRoundRect(x,y,width,10,10,10);
             Color ball = new Color((int)(255-2.55*value),(int)(2.55*value),0);

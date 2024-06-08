@@ -1,19 +1,20 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-/*
- * Title screen displays company logo when game is run
+/**
+ * Title screen displays company logo and game title when game is run
  * <strong>Course info:</strong>
  * ICS4U0 with V. Krasteva
- * @author: Mitchell Levitt
- * @version: 1.0.0
- * @created May 21
+ * @author Mitchell Levitt
+ * @version 1.0.0
+ * created May 21
+ * Hours spent creating: 2
  */
 public class TitleScreen{
 
-    /**Created draw to display my drawings */
-    Drawing draw = new Drawing();
-    /**Varible to hold Game's panel*/
+    /**Drawing object to hold white circle */
+    Drawing draw;
+    /**Reference variable to Game.panel*/
     JPanel myPanel = Game.panel;
     /**
      *Constructor 
@@ -31,7 +32,7 @@ public class TitleScreen{
         logo();
     }
     /**
-     * Creates and adds a label conatining the text "presents" to the panel
+     * Creates and adds all text in the title screen except that of the logo
      */
     public void text()
     {
@@ -86,7 +87,7 @@ public class TitleScreen{
      */
     class ClickHandler extends MouseAdapter{
         /**
-         *Prints the mouse coordinates and changes the scene when mouse is clicked
+         *Changes the scene when mouse is clicked
          */
         public void mouseClicked(MouseEvent e){
             if(Game.sceneNum==1){
@@ -95,7 +96,7 @@ public class TitleScreen{
         }
     }
     /**
-     * Inner class crates a drawing object containg a white circle
+     * Inner class crates a drawing object containing a white circle
      * Added to myPanel
      */
     class Drawing extends JComponent{
