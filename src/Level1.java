@@ -147,7 +147,6 @@ public class Level1 extends Conversation
             super.drawOp3.setMessage(choices[clickNum][2]);
         }else{
             endGame=true;
-            System.out.println("clickNum: "+clickNum);
             super.drawOp1.setMessage("");
             super.drawOp2.setMessage("");
             super.drawOp3.setMessage("");

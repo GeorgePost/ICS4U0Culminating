@@ -6,9 +6,10 @@ import javax.swing.*;
  * There is 4 sections for this tutorial teach the user about the game.
  * <strong>Course info:</strong>
  * ICS4U0 with V. Krasteva
- * @author:George Postica
- * @version: 1.0.0
+ * @author George Postica
+ * @version 1.0.0
  * Created on May 21,2024
+ * Hours spent creating: 20 hours
 */
 public class Tutorial{
    /**Created draw to display my drawings */
@@ -21,7 +22,7 @@ public class Tutorial{
    private Color lightGrey=new Color(238, 238, 238);
    /**Background color used in the draw to make the background*/
    private Color backgroundColor=new Color(32,32,32);
-   /**ornage used for You win and you lose and the background of the party values*/
+   /**Orange used for You win and you lose and the background of the party values*/
    private Color orange=new Color(255, 171, 64);
    /**darkyellow color used for rounded rect of the slider*/
    private Color darkYellow=new Color(128,128,0);
@@ -29,16 +30,16 @@ public class Tutorial{
    private Color yellow = new Color(238,255,65);
    /**Keeps track of the user's amount of clicks in the scene*/
    private int clickCount;
-   /**Setting all the Labels for the slides*/
+   /**All the Labels for the slides*/
    private JLabel line1,line2,line3,slide,image,policy1,policy2,policy3,policy4,policy5,policy6,AIimage,logo;
-   /**Setting the frame from Game*/
+   /**Reference variable for Game.frame*/
    JFrame frame= Game.frame;
    /**Layered pane, so that Labels and paint work together*/
    JLayeredPane lp;
    /**
      *Constructor for Tutorial 
      *Creates the labels, adds the labels and draw to a layered pane.
-     *Defines the game panel, and add layerPaned to the frame and panel
+     *Defines the game panel, and adds layerPane to the frame and panel
    */
    public Tutorial(){
       clickCount=0;
@@ -64,8 +65,8 @@ public class Tutorial{
       panel.setVisible(true);
   }
   /**
-   * Ran inside Tutorial
-   * Title makes the Tutorial text at the top of the screen
+   * Runs inside Tutorial
+   * Makes the Tutorial text at the top of the screen
   */
   public void title(){
       JLabel label1 = new JLabel("Tutorial");
@@ -76,7 +77,7 @@ public class Tutorial{
       lp.add(label1,1);
   }
   /**
-   * Ran inside Tutorial
+   * Runs inside Tutorial
    * Campign manager placed in the bottom left of the screen
   */
   public void campignManager(){
@@ -88,7 +89,7 @@ public class Tutorial{
       lp.add(label,JLayeredPane.PALETTE_LAYER);
   }
   /**
-   * Ran inside Tutorial
+   * Runs inside Tutorial
    * textBox contains all the lines for the dialogue
   */
   public void textBox(){
@@ -112,7 +113,7 @@ public class Tutorial{
       lp.add(line3,JLayeredPane.PALETTE_LAYER);
   }
   /**
-   * Ran inside Tutorial
+   * Runs inside Tutorial
    * creates the last image seen, the Wallaby and Co logo.
   */
   public void logoImage(){
@@ -125,8 +126,8 @@ public class Tutorial{
       lp.add(logo,JLayeredPane.PALETTE_LAYER);
   }
   /**
-   * Ran inside Tutorial
-   * Wallaby Logo creates the first image seen, the Wallaby party logo.
+   * Runs inside Tutorial
+   * creates the first image seen, the Wallaby party logo.
   */
   public void slideImage(){
       slide=new JLabel("");
@@ -137,8 +138,8 @@ public class Tutorial{
       lp.add(slide,JLayeredPane.PALETTE_LAYER);
   }
   /**
-   * Ran inside Tutorial
-   * slide2 move the logo to the left side screen.
+   * Runs inside Tutorial
+   * moves the logo to the left side screen.
    * Also, shows the policies of the Wallaby party.
   */
   public void slide2(){
@@ -202,8 +203,8 @@ public class Tutorial{
    lp.add(policy6,JLayeredPane.PALETTE_LAYER);
   }
   /**
-   * Ran inside Tutorial
-   * AILimitations creates the AI image seen throughout the AI limitations speech
+   * Runs inside Tutorial
+   * creates the AI image seen throughout the AI limitations speech
   */
   public void AILimitations(){
       AIimage=new JLabel("");
@@ -216,7 +217,7 @@ public class Tutorial{
   }
   /*
    *ClickHandler for the tutorial class.
-   *Runs MouseClicked which activates when a user clicks
+   *Runs MouseClicked which activates when a user clicks the mouse
   */
   class ClickHandler extends MouseAdapter{
       /**
@@ -241,8 +242,8 @@ public class Tutorial{
             line3.setText("product or a vote. [Click to Continue]");
          }
          if(clickCount==3){
-            line1.setText("This program will focus on selling a political party the ");
-            line2.setText("wallaby party. The image above shows the parties core");
+            line1.setText("This program will focus on selling a political party: The ");
+            line2.setText("Wallaby Party. The image above shows the parties core");
             line3.setText("values. [Click to Continue]");
             slide.setVisible(false);
             image.setVisible(true);
@@ -312,11 +313,11 @@ public class Tutorial{
    }
    /**
      *Drawing Class for Tutorial
-     *Will contain all drawings used int the project 
+     *Will contain all drawings used in the project 
    */
    class Drawing extends JComponent{
       /**
-        *Amethod to make a slider with a certain width and value
+        *A method to make a slider with a certain width and value
         *@param x is the x-coordinate of the slider
         *@param y is the y coordinate of the slider
         *@param value is a value between 0-100, which decides where the circle is

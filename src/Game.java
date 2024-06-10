@@ -20,8 +20,8 @@ public class Game
     /**An Integer that keeps track of which scene number we are on, so that other classes click methods don't trigger*/
     public static int sceneNum=1;
     /**
-     * Main loop method
-     * Will set up the frame and panel. Start at Scene 1 and repaint the frame after every iteration.
+     * Main method of the Game driver class that initiates the program
+     * Calls frame setup and starts first scene
      */
     public static void main (String[] args)
     {
@@ -30,7 +30,7 @@ public class Game
         frame.repaint();
     }
     /**
-     * frame setup method
+     * Frame setup method
      * Will set up the frame and panel. Used in the main method.
      */
     public static void frameSetup()
@@ -38,6 +38,7 @@ public class Game
         frame = new JFrame("Not Your Doordinary Campaign");
         frame.setSize(800,500);
         frame.setVisible(true);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new JPanel();
         panel.setOpaque(true);

@@ -2,15 +2,16 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 /**
- * This is the game over screen for when the user loses
+ * This is the game over screen for when the user wins
  * <strong>Course info:</strong>
  * ICS4U0 with V. Krasteva
  * @author:George Postica
- * @version: 0.3.3
+ * @since 0.3.3
+ * @version 1.0.0
  * Created on May 21,2024
 */
 public class GameWon implements ActionListener{
-   /**Created draw to display my drawings */
+   /**Drawing to display my drawings */
    private Drawing draw = new Drawing();
    /**Varible to hold Game's panel*/
    private JPanel panel;
@@ -18,11 +19,11 @@ public class GameWon implements ActionListener{
    private Color lightBlue = new Color(0, 234, 255);
    /**Light grey Color*/
    private Color lightGrey=new Color(238, 238, 238);
-   /**darkyellow color used for rounded rect of the slider*/
+   /**dark yellow color used for rounded rect of the slider*/
    private Color darkYellow=new Color(128,128,0);
    /**yellow color used for the circle in the slider*/
    private Color yellow = new Color(238,255,65);
-   /**Setting the frame from Game*/
+   /**Reference variable for Game.frame*/
    JFrame frame= Game.frame;
    /**Layered pane, so that Labels and paint work together*/
    JLayeredPane lp;
@@ -67,8 +68,8 @@ public class GameWon implements ActionListener{
       panel.setVisible(true);
   }
   /**
-   * Ran inside constructor
-   * Title makes the title text at the top of the screen
+   * Runs inside constructor
+   * makes the title text at the top of the screen
   */
   public void title(){
       JLabel label1 = new JLabel(title);
@@ -96,12 +97,12 @@ public class GameWon implements ActionListener{
         lp.add(button,JLayeredPane.PALETTE_LAYER);
     }
     /**
-     *Drawing Class for Game Over
-     *Will contain all drawings used int the project 
+     *Drawing Class for GameWon
+     *contains all drawings used int the project 
    */
    class Drawing extends JComponent{
       /**
-        *Amethod to make a slider with a certain width and value
+        *A method to make a slider with a certain width and value
         *@param x is the x-coordinate of the slider
         *@param y is the y coordinate of the slider
         *@param value is a value between 0-100, which decides where the circle is
