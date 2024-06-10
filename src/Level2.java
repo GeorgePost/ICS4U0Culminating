@@ -6,7 +6,8 @@ import java.util.*;
  * Extends conversation cals to create the scene for the level two conversation
  * @author  Mitchell Levitt
  * @since 0.3.9
- * @version 0.3.9
+ * @version 1.0.0
+ * Hours spent creating: 2
  */
 public class Level2 extends Conversation
 {
@@ -20,9 +21,12 @@ public class Level2 extends Conversation
     int clickNum;
     /** This is used to end the game, so the user can see the final response*/
     boolean endGame = false;
+    /** Weather or not this instance of Level1 has been completed */
+    private boolean complete = false;
     /**
      * Constructor for Level2 class.
      * Performs basic initialisation of matrices, and calls fillDialogue and startText
+     * Also sets starting values of clickNum and endGame
      */
     public Level2()
     {
@@ -81,30 +85,35 @@ public class Level2 extends Conversation
     }
 
     /**
-     * Calls the <code>respond</code> method when the user clicks on a dialogue option, and passes which option is pressed
+     * Calls the <code>respond</code> method or ends the level when the user clicks on a dialogue option, and passes which option is pressed
      * @param x the x location of the mouse when clicked
      * @param y the y location of the mouse when clicked
+     * @author George and Mitchell
      */
     @Override
     public void mouseClick(int x, int y) {
-        if(endGame && Game.sceneNum==5){
-            endGame();
-        }else if(x>500 && x<730 && clickNum<choices.length && Game.sceneNum==5)
-        {
-            if(y>200 && y<275)
-                respond(0);
-            if(y>290 && y<365)
-                respond(1);
-            if(y>380 && y<455)
-                respond(2);
+        if(!complete) {
+            if (endGame && Game.sceneNum == 5) {
+                complete = true;
+                endGame();
+            } else if (x > 500 && x < 730 && clickNum < choices.length && Game.sceneNum == 5) {
+                if (y > 200 && y < 275)
+                    respond(0);
+                if (y > 290 && y < 365)
+                    respond(1);
+                if (y > 380 && y < 455)
+                    respond(2);
+            }
         }
     }
-     /**
-     * Calls the <code>respond</code> method when the user clicks on a dialogue option, and passes which option is pressed
+
+    /**
+     * Displays the person at the door in level 2
+     * Overrides person method in conversation
      * @author George Postica
      */
-     @Override 
-     public void person()
+    @Override
+    public void person()
     {
         Image img = new ImageIcon(this.getClass().getResource("/image/woman.png")).getImage();
         super.person = new JLabel("");
@@ -117,7 +126,6 @@ public class Level2 extends Conversation
         super.insideDoor.add(face,JLayeredPane.PALETTE_LAYER);
         super.insideDoor.add(person,JLayeredPane.PALETTE_LAYER);
     }
-
     /**
      * Sets the initial response and dialogue options before user input
      * @since 0.3.9
