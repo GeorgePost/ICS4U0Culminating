@@ -238,7 +238,7 @@ public abstract class Conversation{
          *@param width is the width of the face. The face is scalable for every 10 pixels
          *@param g is the Graphics class, so we can display our face
          *@author  Written by George originally in <Code>Tutorial</Code>
-         * @see Tutorial
+         *@see Tutorial
          */
         public void face(int x,int y, int width, Graphics g){
             Graphics2D h = (Graphics2D) g;

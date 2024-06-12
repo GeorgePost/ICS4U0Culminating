@@ -9,6 +9,7 @@ import javax.swing.*;
  * @since 0.3.3
  * @version 1.0.0
  * Created on May 21,2024
+ * Hours spent creating: 1.5
 */
 public class GameWon implements ActionListener{
    /**Drawing to display my drawings */
@@ -41,6 +42,7 @@ public class GameWon implements ActionListener{
      *Constructor 
      *Creates the labels, adds the labels and draw to a layered pane.
      *Defines the game panel, and add layerPaned to the frame and panel
+    * @param sceneNum passed, so we can decide which win screen to display
    */
    public GameWon(int sceneNum){
       lp = new JLayeredPane();

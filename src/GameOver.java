@@ -9,6 +9,7 @@ import javax.swing.*;
  * @version 1.0.0
  * @since 0.3.3
  * Created on May 21,2024
+ * Hours spent creating: 1.5
 */
 public class GameOver implements ActionListener{
    /**Drawing to display my drawings */
