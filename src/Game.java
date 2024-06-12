@@ -1,16 +1,17 @@
+
+import java.awt.*;
+import javax.swing.*;
 /**
  * This handles all the other classes in the game
  * This class holds the main frame and panel.
  * It also contains the scene number the user is on to not confuse classes
  * <strong>Course info:</strong>
  * ICS4U0 with V. Krasteva
- * @author: Mitchell Levitt
- * @version: 1.0.0
+ * @author Mitchell Levitt
+ * @version 1.0.0
  * Created on May 21, 2024
  * Hours spent creating: 3
  */
-import java.awt.*;
-import javax.swing.*;
 public class Game
 {
     /**this the JFrame that holds all the other classes. These other classes may reference this frame*/
@@ -22,6 +23,7 @@ public class Game
     /**
      * Main method of the Game driver class that initiates the program
      * Calls frame setup and starts first scene
+     * @param args useless
      */
     public static void main (String[] args)
     {

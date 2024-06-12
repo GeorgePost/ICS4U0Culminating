@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-/*
+/**
  * Tutorial Class that teaches the user about the game.
  * There is 4 sections for this tutorial teach the user about the game.
  * <strong>Course info:</strong>

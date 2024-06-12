@@ -433,6 +433,7 @@ public abstract class Conversation{
      * @version 1.0.0
      */
     class ApprovalMeter extends JComponent {
+        /**value holds the current score of the user*/
         int value = 50;
         /**
          * @param g the graphics object being painted on
@@ -444,6 +445,7 @@ public abstract class Conversation{
         }
 
         /**
+         * This draws a meter
          * @param x the horizontal location of the meter
          * @param y the vertical location of the meter
          * @param width the width of the meter

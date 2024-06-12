@@ -5,7 +5,7 @@ import javax.swing.*;
  * This is the game over screen for when the user wins
  * <strong>Course info:</strong>
  * ICS4U0 with V. Krasteva
- * @author:George Postica
+ * @author George Postica
  * @since 0.3.3
  * @version 1.0.0
  * Created on May 21,2024
